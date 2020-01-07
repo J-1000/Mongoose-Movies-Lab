@@ -15,6 +15,21 @@ router.get('/', (req, res, next) => {
       });
   });
 
+  router.get('/new', (req, res, next) => {
+    res.render("celebrities/new");
+  });
+
+  router.post('/new', (req, res, next) => {
+    const newCelebrity = new Celebrity(req.body);
+    newCelebrity.save()
+      .then((celebrity) => {
+        res.redirect('/celebrities');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+
   router.get('/:celebritiesId', (req, res, next) => {
       //console.log('this is my request log ' + req.params.celebritiesId);
     Celebrity.findById(req.params.celebritiesId)
