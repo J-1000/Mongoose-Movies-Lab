@@ -41,4 +41,15 @@ router.get('/', (req, res, next) => {
       })
   });
 
+  router.post('/:celebritiesId/delete', (req, res, next) => {
+    //console.log('this is my request log ' + req.params.celebritiesId);
+  Celebrity.findByIdAndRemove(req.params.celebritiesId)
+  .then((celebrity) => {
+    res.redirect('/celebrities');
+  })
+    .catch(error => {
+      console.log('Error while delete celebrity: ', error);
+    });
+});
+
   module.exports = router;
