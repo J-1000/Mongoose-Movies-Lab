@@ -1,0 +1,10 @@
+<h2>FoundCelebrity</h2>
+<div>
+    <p>{{celeb.name}}</p>
+    <p>{{celeb.occupation}}</p>
+    <p>{{celeb.catchPhrase}}</p>
+        <form action="/celebrities/{{celeb._id}}/edit" type="POST">
+            <button type="submit">Edit</button>
+        </form>
+    <a href="/celebrities">Back to Celebrities</a>
+</div>
