@@ -14,7 +14,7 @@ const Celebrity = require('../models/celebrity.js');
     .then((celebrity) => {
         res.redirect('/celebrities')
     })
-    .catch(error => { res.render('celebrities/new')
+    .catch(error => { res.render('celebrities/new');
     });
 });
 
@@ -27,6 +27,14 @@ router.get('/:id', (req, res, next) =>{
     })
     .catch(error => {next(error)}
     );
+});
+
+router.post('/:id/delete', (req, res, next) =>{
+  Celebrity.findByIdAndRemove({'_id': req.params.id})
+  .then((celebrity) => {
+    res.redirect('/celebrities')
+  })
+  .catch(error => {next(error)});
 });
 
 router.get('/', (req, res, next) => {
