@@ -3,15 +3,21 @@ const router  = express.Router();
 
 const Celebrity = require('../models/celebrity.js');
 
-router.get('/', (req, res, next) => {
-    Celebrity.find()
-      .then(allTheCelebrities => {
-        console.log('Retrieved celebrities from DB:', allTheCelebrities);
-        res.render('celebrities', { celebrities: allTheCelebrities });
-      })
-      .catch(error => { next(error)}
-    );
-  });
+
+  router.get('/new', (req, res, next) =>{
+    res.render('celebrities/new');
+});
+  router.post('/new', (req, res, next) =>{
+    const {name, occupation, catchPhrase} = req.body;
+    const newCelebrity = new Celebrity({name, occupation, catchPhrase});
+    newCelebrity.save()
+    .then((celebrity) => {
+        res.redirect('/celebrities')
+    })
+    .catch(error => { res.render('celebrities/new')
+    });
+});
+
 
 
 router.get('/:id', (req, res, next) =>{
@@ -22,6 +28,16 @@ router.get('/:id', (req, res, next) =>{
     .catch(error => {next(error)}
     );
 });
+
+router.get('/', (req, res, next) => {
+    Celebrity.find()
+      .then(allTheCelebrities => {
+        console.log('Retrieved celebrities from DB:', allTheCelebrities);
+        res.render('celebrities', { celebrities: allTheCelebrities });
+      })
+      .catch(error => { next(error)}
+    );
+  });
 
   module.exports = router;
   
