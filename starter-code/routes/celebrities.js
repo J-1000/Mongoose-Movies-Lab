@@ -19,6 +19,25 @@ const Celebrity = require('../models/celebrity.js');
 });
 
 
+router.get('/:id/edit', (req, res, next) =>{
+  Celebrity.findOne({'_id': req.params.id})
+  .then(theCelebrity => {
+    res.render('celebrities/edit', {celebrity: theCelebrity});
+  })
+  .catch(error => {next(error)})
+});
+
+router.post('/:id', (req, res, next) =>{
+  const {name, occupation, catchPhrase} = req.body;
+  Celebrity.update({'_id': req.params.id}, {$set: {name, occupation, catchPhrase}}, {new: true})
+  .then((theCelebrity) => {
+    res.redirect('/celebrities')
+  })
+  .catch(error => {next(error)}
+  );
+});
+
+
 
 router.get('/:id', (req, res, next) =>{
     Celebrity.findOne({'_id': req.params.id})
@@ -34,7 +53,8 @@ router.post('/:id/delete', (req, res, next) =>{
   .then((celebrity) => {
     res.redirect('/celebrities')
   })
-  .catch(error => {next(error)});
+  .catch(error => {next(error)}
+  );
 });
 
 router.get('/', (req, res, next) => {
