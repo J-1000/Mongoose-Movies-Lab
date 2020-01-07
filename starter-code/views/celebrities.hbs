@@ -1,0 +1,9 @@
+  
+<h1>CELEBRITIES</h1>
+{{!first just show, add links with id and edit link later ...}}
+{{#each celebrities}}
+    <p>
+        <a href="celebrities/{{this._id}}">{{this.name}}</a> 
+        <!--a href="/books/edit?book_id={{this._id}}" class="edit-button">EDIT</a-->
+    </p>
+{{/each}}
