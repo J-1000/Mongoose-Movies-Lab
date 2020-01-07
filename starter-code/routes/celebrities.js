@@ -11,7 +11,17 @@ router.get('/', (req, res, next) => {
       })
       .catch(error => { next(error)}
     );
-  })
+  });
+
+
+router.get('/:id', (req, res, next) =>{
+    Celebrity.findOne({'_id': req.params.id})
+    .then(theCelebrity => {
+        res.render('celebrities/show', {celebrity: theCelebrity});
+    })
+    .catch(error => {next(error)}
+    );
+});
 
   module.exports = router;
   
