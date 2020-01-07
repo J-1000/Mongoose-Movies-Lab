@@ -4,7 +4,7 @@ const Celebrity = require ('../models/celebrity');
 const dbName = 'celebrity-project';
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
-const celebrity = [
+const celebrities = [
     {
         name: "Arnold Schwarzenegger",
         occupation: "Hollywood actor and politician",
@@ -22,8 +22,8 @@ const celebrity = [
       }
 ];
 
-Celebrity.create(celebrity, (err) => {
+Celebrity.create(celebrities, (err) => {
     if (err) { throw(err)}
-    console.log(`created ${celebrity.length} celebrities`)
+    console.log(`created ${celebrities.length} celebrities`)
     mongoose.connection.close();
 });
