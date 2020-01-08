@@ -7,6 +7,17 @@ const Celebrity = require('../models/celebrity');
 router.get('/new', (req, res, next) => {
     res.render("../views/celebrities/new.hbs");
   });
+
+  router.post('/add', (req, res, next) => {
+    const newCeleb = new Celebrity(req.body);
+    newCeleb.save()
+      .then((celebrity) => {
+        res.redirect('/celebrities');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  });
   
 
   router.get('/:celebId', (req, res, next) => {
@@ -31,20 +42,7 @@ router.get('/', (req, res, next) => {
 });
 
 
-  /*router.post('/books/add', (req, res, next) => {
-    //  console.log(req.body);
-    //  const { title, author, description, rating } = req.body;
-    //  const bookObject = { title, author, description, rating};
-    //  console.log(bookObject);
-    const newBook = new Book(req.body);
-    newBook.save()
-      .then((book) => {
-        res.redirect('/books');
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }); */
+
 
 
 
