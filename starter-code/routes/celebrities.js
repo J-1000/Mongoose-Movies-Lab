@@ -5,7 +5,7 @@ const Celebrity = require('../models/celebrity');
     router.get('/:celebrityId/edit', (req, res, next) => {
         Celebrity.findById(req.params.celebrityId)
         .then((theCelebrity) => {
-            res.render('celebrities/edit', { celebrity: theCelebrity });
+            res.render('celebrities/edit.hbs', { celebrity: theCelebrity });
         })
         .catch(error => {
             console.log('Error while retrieving celebrity details: ', error);
@@ -57,7 +57,7 @@ const Celebrity = require('../models/celebrity');
     router.get('/:celebrityId', (req, res, next) => {
         Celebrity.findById(req.params.celebrityId)
         .then(theCelebrity => {
-            res.render('celebrities/show', { celebrity: theCelebrity });
+            res.render('celebrities/show.hbs', { celebrity: theCelebrity });
         })
         .catch(error => {
             console.log('Error while retrieving celebrity details: ', error);
@@ -69,7 +69,7 @@ const Celebrity = require('../models/celebrity');
         Celebrity.find()
         .then(allTheCelebritiesFromDB => {
         //console.log('Retrieved books from DB:', allTheCelebritiesFromDB);
-        res.render('celebrities/index', { celebrities: allTheCelebritiesFromDB });
+        res.render('celebrities/index.hbs', { celebrities: allTheCelebritiesFromDB });
         })
         .catch(error => {
         console.log('Error while getting the celebrities from the DB: ', error);

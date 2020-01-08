@@ -1,0 +1,25 @@
+<h2>Movies</h2>
+
+<ul>
+{{#each movies}}
+    <li>
+        Title: {{this.title}} <br>
+        Genre: {{this.genre}} <br>
+        Plot: {{this.plot}} <br>
+        Cast:
+        <ul>        
+        {{#each this.cast}}        
+        <li>
+            {{this.name}}
+        </li>
+        {{/each}}
+        </ul>
+        <form action="/movies/{{this._id}}/edit" method="get">  
+        <button type="submit">EDIT</button>
+        </form>       
+    </li>
+
+{{/each}}
+</ul>
+
+<a href="/movies/new">Add new movie</a>

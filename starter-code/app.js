@@ -52,11 +52,31 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
+hbs.registerHelper("isCelebrityInMovieCast", function(movie){
+  let celebrity = this._id;
+  let movieCast = movie.cast;  
+  let result = movieCast.find(element => {
+    if(JSON.stringify(celebrity) === JSON.stringify(element)){
+      return true;
+    } 
+    else{
+      return false;
+    }
+  });
+  if(result === undefined)
+    return "";
+  else
+    return "selected";
+})
+
 const index = require('./routes/index');
 app.use('/', index);
 
 const celebrities = require('./routes/celebrities');
 app.use('/celebrities', celebrities);
+
+const movies = require('./routes/movies');
+app.use('/movies', movies);
 
 
 module.exports = app;
