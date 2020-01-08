@@ -19,6 +19,27 @@ router.get('/new', (req, res, next) => {
       })
   });
   
+  router.get('/edit', (req, res, next) => {
+    Celebrity.findOne({ _id: req.query.celeb_id })
+      .then((celeb) => {
+        res.render("../views/celebrities/celeb-edit.hbs", { celeb });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  });
+
+  router.post('/edit', (req, res, next) => {
+    const { name, occupation, catchPhrase } = req.body;
+    Celebrity.update({ _id: req.query.celeb_id }, { $set: { name, occupation, catchPhrase } })
+      .then((celeb) => {
+        res.redirect('/celebrities');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }); 
+
 
   router.get('/:celebId', (req, res, next) => {
     Celebrity.findById(req.params.celebId)
@@ -40,6 +61,10 @@ router.get('/', (req, res, next) => {
       console.log('Error while getting the records from the DB: ', error);
     })
 });
+
+
+
+
 
 
 
