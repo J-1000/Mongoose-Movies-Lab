@@ -53,5 +53,25 @@ router.post('/:id/delete', (req,res,next) => {
     });
   });
 
+  router.get('/:id/edit', (req, res, next) => {
+    Celebrity.findById(req.params.id)
+      .then(theCelebrity => {
+        res.render('celebrities/edit', { detail: theCelebrity });
+      })
+      .catch(error => {
+        next(error);
+      });
+  });
+
+  router.post('/:id', (req, res, next) => { 
+    const {name, occupation, catchPhrase} = req.body;
+    Celebrity.update({_id: req.params.id}, {$set: {name, occupation, catchPhrase}})
+    .then(celibrity => {
+      res.redirect('/celebrities');
+    })
+    .catch(error => {
+      next(error);
+    });
+  });
 
 module.exports = router;

@@ -1,0 +1,15 @@
+
+<h2>edit Page</h2>
+
+<form action="/celebrities/{{detail.id}}" method="post">
+  <label for="">Name:</label>
+  <input type="text" name="name" value = "{{detail.name}}"> 
+
+  <label for="">Occupation:</label>
+  <input type="text" name="occupation" value = "{{detail.occupation}}">
+
+  <label for="">CatchPhrase:</label>
+  <input type="text" name="catchPhrase" value = "{{detail.catchPhrase}}">
+
+  <button type="submit">Edit</button>
+</form>

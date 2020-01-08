@@ -1,0 +1,26 @@
+<h1>show-movies.hbs</h1>
+
+<button>
+    <a href="/movies/add">Create a new Movie</a>
+</button>
+<br>
+
+{{#each movies}}
+      <h3>{{this.title}}</h3>
+      <p>Genre: {{this.genre}} Plot: {{this.plot}}</p>
+      {{#each this.cast}}
+        <ul>
+            <li>{{this.name}}</li>
+        </ul>
+     {{/each}}
+
+      <form action="/movies/{{this._id}}/delete" method="post">
+      <button type="submit">DELETE</button>
+      <br>
+      </form>
+
+      <form action="/movies/{{this._id}}/edit" method="get">
+      <button type="submit">EDIT</button>
+      <br>
+      </form>
+{{/each}}
