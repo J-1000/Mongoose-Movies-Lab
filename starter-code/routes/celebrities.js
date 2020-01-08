@@ -28,7 +28,7 @@ router.get("/:celebritiesId/edit", (req, res, next) => {
     });
 });
 
-router.post("/edit", (req, res, next) => {
+router.post("/:celebritiesId/edit", (req, res, next) => {
   const { name, occupation, catchPhrase } = req.body;
   Celebrity.update(
     { _id: req.params.celebritiesId },

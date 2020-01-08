@@ -27,9 +27,36 @@ router.post("/", (req, res, next) => {
     });
 });
 
+router.get("/:moviesId/edit", (req, res, next) => {
+  Movie.findById(req.params.moviesId)
+    .then(theMovie => {
+      res.render("movies/edit", { movie: theMovie });
+    })
+    .catch(error => {
+      console.log("Error while retrieving movie details: ", error);
+    });
+});
+
+router.post("/:moviesId/edit", (req, res, next) => {
+    const { title, genre, plot } = req.body;
+    console.log(req);
+    Movie.update(
+      { _id: req.params.moviesId },
+      { $set: { title, genre, plot } }
+    )
+      .then(movie => {
+        res.redirect("/movies");
+      })
+      .catch(error => {
+        next(error);
+      });
+  });
+
 router.get("/", (req, res, next) => {
   Movie.find()
+    .populate("cast")
     .then(allTheMoviesFromDB => {
+      console.log(allTheMoviesFromDB);
       res.render("movies/index", { movies: allTheMoviesFromDB });
     })
     .catch(error => {
