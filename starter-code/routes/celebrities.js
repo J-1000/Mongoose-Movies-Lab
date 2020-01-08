@@ -66,6 +66,16 @@ router.get('/', (req, res, next) => {
     })
 });
 
+router.get('/movies/list', (req, res, next) => {
+  Movie.find()
+    .then(allMoviesFromDB => {
+      res.render('../views/celebrities/movies.hbs', { movies: allMoviesFromDB }) ;
+    })
+    .catch(error => {
+      console.log('Error while getting the records from the DB: ', error);
+    })
+});
+
 
 //Movies *************************************
 

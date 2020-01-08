@@ -1,0 +1,20 @@
+  
+<h1>MOVIES</h1>
+{{#each movies}}
+    <p>{{this.title}}</p>
+    <p>{{this.genre}}</p>
+    <p>{{this.plot}}</p>
+    <ul>
+        {{#each cast}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ul>
+    <p>****************************</p>
+{{/each}}
+
+
+
+
+<!--In the view we want to display the title, genre and plot for every movie
+We also want to show an unordered list with all the actors playing in the movie
+to have access in the view to the properties of the celebrities in the cast array you will have to populate them in the route-->
