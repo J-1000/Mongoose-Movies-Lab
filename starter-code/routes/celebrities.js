@@ -27,7 +27,7 @@ router.get('/:id/edit', (req, res, next) =>{
   .catch(error => {next(error)})
 });
 
-router.post('/:id', (req, res, next) =>{
+router.post('/:id/edit', (req, res, next) =>{
   const {name, occupation, catchPhrase} = req.body;
   Celebrity.update({'_id': req.params.id}, {$set: {name, occupation, catchPhrase}}, {new: true})
   .then((theCelebrity) => {
