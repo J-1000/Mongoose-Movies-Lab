@@ -101,6 +101,27 @@ router.post('/movies', (req, res, next) => {
     })
 });
 
+router.get('/movies/edit', (req, res, next) => {
+  Movie.findOne({ _id: req.query.movie_id })
+    .then(movie => {
+      res.render("../views/celebrities/movie-edit.hbs", { movie });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+});
+
+router.post('/movies/edit', (req, res, next) => {
+  const { title, genre, plot } = req.body;
+  Movie.update({ _id: req.query.movie_id }, { $set: { title, genre, plot } })
+    .then((movie) => {
+      res.redirect('/celebrities/movies/list');
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+});
+
 
 
 
