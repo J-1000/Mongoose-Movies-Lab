@@ -30,7 +30,10 @@ router.post("/", (req, res, next) => {
 router.get("/:moviesId/edit", (req, res, next) => {
   Movie.findById(req.params.moviesId)
     .then(theMovie => {
-      res.render("movies/edit", { movie: theMovie });
+      Celebrity.find()
+      .then(theCelebrities => {
+        res.render("movies/edit", { movie: theMovie, celebrities: theCelebrities });
+      });
     })
     .catch(error => {
       console.log("Error while retrieving movie details: ", error);
