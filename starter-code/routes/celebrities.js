@@ -1,12 +1,15 @@
 const express = require('express');
 const router  = express.Router();
 const Celebrity = require('../models/celebrity');
+const Movie = require('../models/movie');
+
 
 
 
 router.get('/new', (req, res, next) => {
     res.render("../views/celebrities/new.hbs");
   });
+
 
   router.post('/add', (req, res, next) => {
     const newCeleb = new Celebrity(req.body);
@@ -53,12 +56,38 @@ router.get('/new', (req, res, next) => {
   
 
 router.get('/', (req, res, next) => {
+  console.log(`We are in'/' `);
   Celebrity.find()
     .then(allCelebsFromDB => {
-      res.render('../views/celebrities/index.hbs', { celebrities: allCelebsFromDB });
+      res.render('../views/celebrities/index.hbs', { celebrities: allCelebsFromDB }) ;
     })
     .catch(error => {
       console.log('Error while getting the records from the DB: ', error);
+    })
+});
+
+
+//Movies *************************************
+
+router.get('/movies/new', (req, res, next) => {
+  Celebrity.find()
+    .then(allCelebsFromDB => {
+      res.render('../views/celebrities/movies-new.hbs', { celebrities: allCelebsFromDB }) ;
+    })
+    .catch(error => {
+      console.log('Error while getting the records from the DB: ', error);
+    })
+});
+
+
+router.post('/movies', (req, res, next) => {
+  const newMovie = new Movie(req.body);
+  newMovie.save()
+    .then((movie) => {
+      res.redirect('/celebrities');
+    })
+    .catch((error) => {
+      console.log(error);
     })
 });
 
