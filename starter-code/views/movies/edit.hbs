@@ -1,0 +1,16 @@
+<h2>Edit Movie</h2>
+<form action="/movies/{{mov._id}}" method="POST">
+    <input type="text" name="title" value="{{mov.title}}">
+    <input type="text" name="genre" value="{{mov.genre}}">
+    <input type="text" name="plot" value="{{mov.plot}}">
+    <select name="cast" multiple>
+        
+    {{#each celeb}}
+        {{#select ../mov}}
+        {{/select}}
+    {{/each}}
+        
+    </select>
+
+    <button type="submit">Update</button>
+</form>

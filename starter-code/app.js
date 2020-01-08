@@ -55,5 +55,37 @@ const index = require('./routes/index');
 app.use('/', index);
 const celebrities = require('./routes/celebrities');
 app.use('/celebrities', celebrities);
+const movies = require('./routes/movies');
+app.use('/movies', movies);
+
+
+
+//Helper function for multiple selected celebrities within movie edit
+//not fully functional
+hbs.registerHelper('select', function( idArr ){
+  let result = "";
+  let checkArr = [];
+  let checkRes = false;
+  for (let pos of idArr.cast) {
+    if (pos._id.toString() === this._id.toString()) {
+      if (!checkArr.includes(`<option value="${this._id}" selected="true">${this.name}</option>`) && !checkArr.includes(`<option value="${this._id}">${this.name}</option>`)) {
+        checkArr.push({key: `${this._id}`, val: `<option value="${this._id}" selected="true">${this.name}</option>`});
+      }
+    }
+    else {
+      if ((!checkArr.includes(`<option value="${this._id}">${this.name}</option>`)) && (!checkArr.includes(`<option value="${this._id}" selected="true">${this.name}</option>`))) {
+        checkArr.push(`<option value="${this._id}">${this.name}</option>`);
+      }
+    }
+  }
+
+  for (let pos2 of checkArr) {
+    result += pos2;
+  }
+
+  console.log(checkArr);
+
+  return result;
+});
 
 module.exports = app;

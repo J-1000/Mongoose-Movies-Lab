@@ -45,7 +45,7 @@ router.get('/', (req, res, next) => {
     });
   });
   
-  /* Edit single Celebrity Step 2 */
+  /* Edit single Celebrity Step 1 */
   router.get('/:id/edit', (req, res, next) => {
     Celebrity.findOne({ '_id': req.params.id })
     .then(oneCelebFromDB => {
@@ -69,7 +69,7 @@ router.get('/', (req, res, next) => {
     });
   })
   
-  /* Edit single Celebrity Step 1 */
+  /* Find single Celebrity */
   router.get('/:id', (req, res, next) => {
     Celebrity.findOne({ '_id': req.params.id })
     .then(oneCelebFromDB => {
@@ -81,4 +81,4 @@ router.get('/', (req, res, next) => {
     });
   });
 
-  module.exports = router;
+module.exports = router;

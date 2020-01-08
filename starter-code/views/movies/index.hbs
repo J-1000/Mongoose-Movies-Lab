@@ -1,0 +1,22 @@
+<h2>Movies</h2>
+<div>
+    {{#each mov}}
+        <p>
+            <hr>
+            <p><b>Title:</b> {{title}}</p>
+            <p><b>Genre:</b> {{genre}}</p>
+            <p><b>Plot:</b> {{plot}}</p>
+            <p><b>Cast(s):</b></p>
+            <ul>
+                {{#each cast}}
+                    <li><a href="/celebrities/{{_id}}">{{name}}</a></li>
+                {{/each}}
+            </ul>
+            <form action="/movies/{{_id}}/edit" type="POST">
+                <button type="submit">Edit</button>
+            </form>
+        </p>
+    {{/each}}
+</div>
+<hr><hr>
+<a href="/movies/new">Add a new Movie</a>
