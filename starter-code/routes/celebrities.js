@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 const Celebrity = require('../models/celebrity.js');
-
+const Movie = require('../models/movie.js')
 
   router.get('/new', (req, res, next) =>{
     res.render('celebrities/new');
@@ -66,6 +66,7 @@ router.get('/', (req, res, next) => {
       .catch(error => { next(error)}
     );
   });
+
 
   module.exports = router;
   
