@@ -31,22 +31,19 @@ router.get("/:moviesId/edit", (req, res, next) => {
   Movie.findById(req.params.moviesId)
     .then(theMovie => {
       Celebrity.find()
-      .then(theCelebrities => {
+      .then(theCelebrities => { //diese Operation wird verschachtelt in das erste .then da es eine asynchrone Operation ist -> würde sonst nicht auf die Ausführung warten
         res.render("movies/edit", { movie: theMovie, celebrities: theCelebrities });
       });
     })
     .catch(error => {
-      console.log("Error while retrieving movie details: ", error);
+      next(error);
     });
 });
 
 router.post("/:moviesId/edit", (req, res, next) => {
     const { title, genre, plot } = req.body;
     console.log(req);
-    Movie.update(
-      { _id: req.params.moviesId },
-      { $set: { title, genre, plot } }
-    )
+    Movie.findByIdAndUpdate(req.params.moviesId, { title, genre, plot } )
       .then(movie => {
         res.redirect("/movies");
       })
