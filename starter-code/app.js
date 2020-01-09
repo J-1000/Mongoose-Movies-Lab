@@ -62,30 +62,20 @@ app.use('/movies', movies);
 
 //Helper function for multiple selected celebrities within movie edit
 //not fully functional
-hbs.registerHelper('select', function( idArr ){
-  let result = "";
-  let checkArr = [];
-  let checkRes = false;
-  for (let pos of idArr.cast) {
-    if (pos._id.toString() === this._id.toString()) {
-      if (!checkArr.includes(`<option value="${this._id}" selected="true">${this.name}</option>`) && !checkArr.includes(`<option value="${this._id}">${this.name}</option>`)) {
-        checkArr.push({key: `${this._id}`, val: `<option value="${this._id}" selected="true">${this.name}</option>`});
-      }
-    }
-    else {
-      if ((!checkArr.includes(`<option value="${this._id}">${this.name}</option>`)) && (!checkArr.includes(`<option value="${this._id}" selected="true">${this.name}</option>`))) {
-        checkArr.push(`<option value="${this._id}">${this.name}</option>`);
-      }
+hbs.registerHelper('select', function( movArr ){
+  //called for each celeb._id = this._id
+  let movIdArr = [];
+  if (movArr.cast) {
+    for (let movie of movArr.cast) {
+      movIdArr.push(movie._id.toString());
     }
   }
-
-  for (let pos2 of checkArr) {
-    result += pos2;
+  if (movIdArr.includes(this._id.toString())) {
+    return `<option value="${this._id}" selected="true">${this.name}</option>`
   }
-
-  console.log(checkArr);
-
-  return result;
+  else {
+    return `<option value="${this._id}">${this.name}</option>`
+  }
 });
 
 module.exports = app;
