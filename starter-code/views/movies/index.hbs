@@ -1,4 +1,4 @@
-<h1>Movies</h1>
+<h1>Movies!!!!!!!</h1>
 <ul>
 {{#each movies}}
  <h2>{{this.title}}</h2>
@@ -8,6 +8,8 @@
  {{#each this.cast}}
    <p><a href="/celebrities/{{this._id}}">{{this.name}}</a></p>
  {{/each}}
-
+   <form action="/movies/{{this._id}}/edit" method="get">
+      <button type="submit">edit</button>
+   </form>
 {{/each}}
 </ul>

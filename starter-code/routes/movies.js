@@ -21,6 +21,29 @@ router.post('/new', (req, res, next) =>{
     .catch(error => {next(error)})
 });
 
+
+
+router.get('/:id/edit', (req, res, next) =>{
+  Movie.findOne({'_id': req.params.id})
+  .then(theMovie => {
+    res.render('movies/edit', {movie: theMovie});
+  })
+  .catch(error => {next(error)})
+});
+
+router.post('/:id/edit', (req, res, next) =>{
+  const {title, genre, plot} = req.body;
+  Movie.update({'_id': req.params.id}, {$set: {title, genre, plot}})
+  .then((theMovie) => {
+    res.redirect('/movies')
+  })
+  .catch(error => {next(error)}
+  );
+});
+
+
+
+
 router.get('/celebrities', (req, res, next) => {
     Celebrity.findById(req.params.id).populate('movie')
       .then(someStuff => {
