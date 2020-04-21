@@ -1,0 +1,21 @@
+<div>
+    <p><a href='javascript:javascript:history.go(-1)'>Go back</a></p>
+    <p><a href="/">Home</a></p>
+    <h2>Iteration #2: Listing Our Celebrities</h2>
+
+    {{#each celebritiyList}}
+
+    <p><a href="/celebrities/{{_id}}">{{name}}</a></p>
+
+    <form action="/celebrities/{{_id}}/delete", method="POST">
+        <button type="submit">Delete</button>
+    </form>
+
+
+
+    {{/each}}
+
+    <p><a href="/celebrities/new">Add New</a></p>
+
+
+</div>
