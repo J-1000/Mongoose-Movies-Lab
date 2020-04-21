@@ -1,0 +1,17 @@
+<h2>Heading movies</h2>
+{{#each movieArray}}
+<p>{{title}}</p>
+<p>{{genre}}</p>
+<p>{{plot}}</p>
+<p>Cast: </p>
+<ul>
+  {{#each cast}}
+  <li><a href="/celebrities/{{id}}">{{name}}</a></li>
+  {{/each}}
+</ul>
+<a href="/movies/{{id}}/edit">Edit movie</a>
+<!--<form action="/movies/{{id}}/delete" method="POST">
+  <button type="submit">Delete movie</button>
+</form>-->
+{{/each}}
+<br><br><a href="movies/new">Add movie</a>
