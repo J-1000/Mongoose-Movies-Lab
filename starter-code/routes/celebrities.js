@@ -46,4 +46,40 @@ router.post("/celebrities", (req, res) => {
     });
 });
 
+router.post("/celebrities/:id/delete", (req, res) => {
+  Celebrity.deleteOne({ _id: req.params.id })
+    .then(() => {
+      res.redirect("/celebrities");
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/celebrities/:id/edit", (req, res) => {
+  console.log("wtf");
+  Celebrity.findById(req.params.id)
+    .then((celebrity) => {
+      res.render("celebrities/edit", { celebrity });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.post("/celebrities/:id", (req, res) => {
+  const { name, occupation, catchPhrase } = req.body;
+  Celebrity.findOneAndUpdate(req.params.id, {
+    name,
+    occupation,
+    catchPhrase,
+  })
+    .then((data) => {
+      res.redirect("/celebrities");
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;
