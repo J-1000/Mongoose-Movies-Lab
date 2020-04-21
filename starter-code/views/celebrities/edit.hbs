@@ -1,0 +1,15 @@
+<h2>Formulario de</h2>
+{{#with celeb}}
+<form action="/celebrities/{{_id}}" method="post">
+    <label for="title">Name: </label>
+    <input type="text" name="name" id="title" value="{{name}}">
+
+    <label for="author">Occupation: </label>
+    <input type="text" name="occupation" id="author" value="{{occupation}}">
+
+    <label for="description">Catch Phrase: </label>
+    <input type="text" name="cacthPhrase" id="description" value="{{catchPhrase}}">
+
+    <button type="submit">Edit a book</button>
+</form>
+{{/with}}

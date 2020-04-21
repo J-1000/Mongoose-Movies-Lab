@@ -46,4 +46,23 @@ const Celebrity = require('../models/Celebrity');
         next(err);
       });
     })
+    router.get('/celebrities/edit/:celebId', (req, res) => {
+        Celebrity.findById(req.params.celebId)
+          .then(celeb =>{
+            res.render('celebrities/edit', { celeb: celeb });
+          });
+      });
+      router.post('/celebrities/:celebId', (req, res) => {
+        const { name, occupation, catchPhrase} = req.body;
+      Celebrity.findByIdAndUpdate(req.params.celebId, {
+        name: name,
+        occupation: occupation,
+        catchPhrase: catchPhrase,
+        }).then(celeb => {
+            res.redirect(`/celebrities/${celeb._id}`);
+        }).catch(err => {
+            next(err);
+        })
+        });
+        
 module.exports = router;
