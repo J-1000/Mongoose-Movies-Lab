@@ -1,0 +1,17 @@
+<h2>Edit the movie</h2>
+{{#with movie}}
+<form action="/movies/{{this._id}}" method="POST">
+    <label for="title">Title</label>
+    <input type=" text" id="title" name="title" value="{{this.title}}">
+    <label for="genre">Genre</label>
+    <input type="text" id="genre" name="genre" value="{{this.genre}}">
+    <label for="plot">Plot</label>
+    <input type="text" id="plot" name="plot" value="{{this.plot}}">
+    <label for="cast">Cast</label>
+    {{#each this.cast}}
+    <input type="text" id="name" name="name" value="{{this.name}}">
+    {{/each}}
+
+    <button type="submit">Edit movie</button>
+</form>
+{{/with}}
