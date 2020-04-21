@@ -9,7 +9,7 @@ const Celebrity = require('../models/Celebrity');
       })    
   });
   router.get("/celebrities/add", (req,res) => {
-   res.render("newCelebrity")
+   res.render('celebrities/celebrityForm')
     })
   router.post('/celebrities', (req, res) => {
   // const title = req.body.title;
@@ -34,7 +34,7 @@ const Celebrity = require('../models/Celebrity');
   router.get("/celebrities/:id", (req,res) => {
   Celebrity.findById(req.params.id)
     .then(celeb => {
-      res.render('celebritie', { celeb: celeb });
+      res.render('celebrities/celebritie', { celeb: celeb });
     });
   })
   router.post("/celebrities/:id/delete", (req,res) => {
