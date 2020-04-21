@@ -1,0 +1,11 @@
+<h2>Dioni´s celebrities</h2>
+{{#each celebrities}}
+<form action="/celebrities/delete/{{_id}}" method="POST">
+    <a href="/celebrities/{{id}}">{{name}}</a>
+    <a href="/celebrities/{{id}}/edit">edit</a>
+    <button>Delete</button>
+    <br>
+</form>
+{{/each}}
+<br>
+<a href="/celebrities/new">Creat a new one</a>
