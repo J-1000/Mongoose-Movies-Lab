@@ -1,0 +1,17 @@
+<h2>Movies on Show</h2>
+<a href="/movies/new">Add new Movies</a>
+<div>
+    {{#each movies}}
+    <a href="/movies/{{_id}}">
+        <h1>{{title}}</h1>
+    </a>
+    <p>{{genre}}</p>
+    <p>{{plot}}</p>
+    <ul>
+        {{#each cast}}
+        <li>{{name}}</li>
+        {{/each}}
+    </ul>
+    {{/each}}
+
+</div>

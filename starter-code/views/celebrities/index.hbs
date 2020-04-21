@@ -1,0 +1,10 @@
+<a href="/celebrities/new">Add new celebrities</a>
+<div>
+    {{#each celebrities}}
+    <a href="/celebrities/{{_id}}">
+        <h1>{{name}}</h1>
+    </a>
+    <h2>{{occupation}}</h2>
+    <p>{{catchPhrase}}</p>
+    {{/each}}
+</div>
