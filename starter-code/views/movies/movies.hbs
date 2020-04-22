@@ -1,0 +1,17 @@
+<h1>All the movies</h1>
+{{#each movies}}
+<h1>{{title}}</h1>
+<p>{{genre}}</p>
+<p>{{plot}}</p>
+{{!-- <a href="/celebrities/{{_id}}"><p>{{name}}</p></a>
+<form action="celebrities/{{_id}}/delete" method="post">
+<button type="submit">Delete</button>
+<button><a href="/celebrities/edit/{{_id}}">edit</a></button>
+</form> --}}
+<h3>Casting</h3>
+{{#with movies.celebs}}
+<p>{{name}}</p>
+<p>{{occupation}}</p>
+{{/with}}
+{{/each}}
+<a href="/movies/add">Add a movie</a>
