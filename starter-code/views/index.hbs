@@ -1,2 +1,10 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+{{#each artistname}}
+<p><a href="/celebrities/{{_id}}">{{name}}</a></p>
+{{/each}}
+<a href="/celebrities">See the list of Celebrities!</a>
+
+<form action="/celebrities/delete/:id" method="POST">
+    <button type="submit">Delete</button>
+</form>
