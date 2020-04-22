@@ -1,0 +1,16 @@
+<h2>All celebrities</h2>
+
+  <div class="celebrities">
+    
+  
+    {{#each this.celebritiesAll}} 
+    <p><a href="/celebrities/{{this._id}}">Name: {{this.name}}</a></p>
+    
+    <form action="/celebrities/{{this._id}}/delete" method="POST">
+    {{!-- inside action is a url, where browser sends the request to, but browser doesn't redirect to it --}}
+      <button type="submit">delete!</button>
+    </form>
+    {{/each}}
+    
+   
+  </div>

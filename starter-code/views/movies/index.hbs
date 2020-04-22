@@ -1,0 +1,16 @@
+<h2>See all movies!</h2>
+
+  <div class="movie_index">
+
+  {{#each this.moviesAll}} 
+    <p>Movie: {{this.title}}</p>
+    <p>Genre: {{this.genre}}</p>
+    <p>Plot: {{this.plot}}</p>
+    <p>Cast:
+    {{#each this.cast}}
+     {{this.name}},
+    {{/each}}
+    </p>
+  {{/each}}
+    
+  </div>
