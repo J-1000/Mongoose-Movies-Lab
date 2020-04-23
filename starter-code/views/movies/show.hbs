@@ -1,0 +1,17 @@
+<p><a href='javascript:javascript:history.go(-1)'>Go back</a></p>
+
+
+{{#with showMovie}}
+
+<p>Title: {{title}}</p>
+<p>Genre: {{genre}}</p>
+<p>Plot: {{plot}}</p>
+
+<P>Cast:</p>
+
+{{#each cast}}
+<p>{{name}}</p>
+{{/each}}
+
+
+{{/with}}

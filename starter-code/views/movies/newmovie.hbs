@@ -12,13 +12,18 @@
 
 <label for="plot">Plot: </label>
 <textarea name="plot" id="plot"></textarea>
+<br>
 
 <label for="cast">Cast: </label>
-<input type="text" name="cast" id="cast">
+<br>
 
-
+{{#each celebrities}}
+<input type="checkbox" id="cast" name="cast" value = "{{_id}}">
+<label for="cast">{{name}}</label><br>
+{{/each}}
 
 <button type="submit">Add a movie</button>
 
 
 </form>
+
