@@ -1,0 +1,9 @@
+<div class="showCelebrityContainer">
+<title>celebrity Details</title>
+{{#with celebrities}}
+<h2> Details about {{name}}</h2>
+<p>occupation: {{occupation}}</p>
+<p>The catch phrase: {{catchPhrase}}</p>
+<a href='/celebrities/{{id}}/edit'>Edit the Celebrity</a>
+{{/with}}
+</div>

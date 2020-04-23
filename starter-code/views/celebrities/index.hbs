@@ -1,0 +1,12 @@
+<div class="celebritiyContainer">
+<title>Celebrities</title>
+<h2>Celebrities</h2>
+{{#each celebrities}}
+<a href="/celebrities/{{_id}}">{{name}} </a>
+<form action="/celebrities/{{id}}/delete" method=post>
+   <button type="submit"> delete</button>
+</form>
+{{/each}}
+<a href="/celebrities/new">Create your Celebrity :)</a>
+
+</div>
