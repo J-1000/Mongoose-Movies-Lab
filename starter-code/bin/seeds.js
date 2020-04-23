@@ -38,4 +38,4 @@ Celebrity.create(celebrities).then(data => {
     mongoose.connection.close();
 }).catch(err => {
     console.log(err);
-});
+}); 
