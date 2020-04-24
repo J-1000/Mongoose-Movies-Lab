@@ -1,0 +1,16 @@
+<h2>Check out the movies!</h2>
+
+<div>
+  {{#each this.movies}} 
+  <p>Movie: {{this.title}}</p>
+  <p>Genre: {{this.genre}}</p>
+  <p>Plot: {{this.plot}}</p>
+  <p>Cast:
+  {{#each this.cast}}
+  {{this.name}},
+  {{/each}}</p>
+
+  {{/each}}
+  </div> 
+
+  <h3><a href="/">Go Back to Home</a><h3>
