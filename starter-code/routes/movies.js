@@ -49,7 +49,33 @@ router.post('/movies', (req, res) => {
             });
           });
 
+router.get('/movies/:id/edit', (req, res) => {
+    const movieId = req.params.id;
+    Movie.findById(movieId).then(movie => {
+        res.render('movies/edit',{movie});
+    }).catch(err => {
+        console.log(err);
+        next(err);
+    });
+});
 
+router.post('/movies/:id', (req,res) => {
+    const { title, genre, plot} = req.body;
+    const movieId = req.params.id;
+    Movie.findByIdAndUpdate(movieId,{
+        title,
+        genre,
+        plot
+    })
+    .then(() => {
+      res.redirect('/movies');
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+
+})
 
 module.exports = router; 
 
