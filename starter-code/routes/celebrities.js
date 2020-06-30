@@ -26,6 +26,23 @@ router.get('/celebrities/:id', (req, res, next) => {
   })
 }); 
 
+router.get('/new', (req, res) => {
+  res.render('new')
+}); 
+
+router.post('/celebrities', (req, res) => {
+  const { name, occupation, catchPhrase} = req.body; 
+  Celebrity.create ({
+    name: name, 
+    occupation: occupation,  
+    catchPhrase: catchPhrase
+  }).then(celeb => {
+    console.log(`Success, ${name} was added to the db.`); 
+    res.redirect('/celebrities')
+  }).catch(err => {
+    console.log(err); 
+  })
+})
 
 
 module.exports=router; 
