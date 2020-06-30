@@ -1,6 +1,6 @@
 const express = require('express');
 const Celebrity = require('../models/Celebrity');
-const { findById } = require('../models/Celebrity');
+// const { findById } = require('../models/Celebrity');
 const router = express.Router();
 
 router.get('/celebrities', (req, res, next) => {
