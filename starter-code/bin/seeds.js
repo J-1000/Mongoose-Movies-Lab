@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const Celebrity = require("../models/celebrity.js");
+const Celebrity = require("../models/Celebrity.js");
 
-mongoose.connect("mongodb://localhost/Celebrities", {
+mongoose.connect("mongodb://localhost/Mongoose-Movies-Lab", {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,

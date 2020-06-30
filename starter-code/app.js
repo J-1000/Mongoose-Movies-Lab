@@ -10,7 +10,7 @@ const logger = require("morgan");
 const path = require("path");
 
 mongoose
-  .connect("mongodb://localhost/Celebrities", {
+  .connect("mongodb://localhost/Mongoose-Movies-Lab", {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -55,7 +55,9 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
-const index = require("./routes/celebrities");
-app.use("/", index);
+const celebrities = require("./routes/celebrities");
+const movies = require("./routes/movies");
+app.use("/", celebrities);
+app.use("/", movies);
 
 module.exports = app;
