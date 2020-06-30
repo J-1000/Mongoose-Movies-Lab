@@ -42,7 +42,18 @@ router.post('/celebrities', (req, res) => {
   }).catch(err => {
     console.log(err); 
   })
-})
+}); 
+
+router.post('/celebrities/:id/delete', (req, res, next) => {
+  Celebrity.findByIdAndRemove(req.params.id)
+  .then(() => {
+    console.log("A celeb has been deleted")
+    res.redirect('/celebrities')
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}); 
 
 
 module.exports=router; 
