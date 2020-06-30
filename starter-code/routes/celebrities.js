@@ -33,7 +33,7 @@ router.get('/celebrities/:_id', (req, res) => {
 router.post('/celebrities', (req, res) => {
             console.log(req.body);
             const { name, occupation, catchphrase} = req.body;
-            Celebrity.save({
+            Celebrity.create({
                 name: name,
                 occupation: occupation,
                 catchphrase: catchphrase
@@ -46,7 +46,18 @@ router.post('/celebrities', (req, res) => {
               res.redirect('celebrities/new');
             });
           });
-          
+router.post('/celebrities/:id/delete', (req,res) => {
+    const celebrityId = req.params.id
+    Celebrity.findByIdAndRemove(celebrityId)
+    .then(() => {
+      res.redirect('/celebrities');
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    })
+
+})
 
 module.exports = router; 
 
