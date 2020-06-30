@@ -58,4 +58,8 @@ app.use('/', index);
 const celebrityIndex = require('./routes/celebrities.js');
 app.use('/', celebrityIndex); 
 
+
+const movieIndex = require('./routes/movies.js');
+app.use('/', movieIndex); 
+
 module.exports = app;
