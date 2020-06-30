@@ -10,6 +10,23 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/new', (req, res) => {
+    res.render('celebrities/new');
+  }); 
+
+router.post('/', (req, res) => {
+    const { name, occupation, catchPhrase } = req.body;
+    const newCeleb = new Celebrity({ name, occupation, catchPhrase });
+    newCeleb.save()
+    .then((celeb) => {
+      res.redirect('/celebrities');
+    })
+    .catch((error) => {
+      console.log(error);
+      res.redirect('/celebrities/new');
+    })
+  }); 
+
 router.get('/:id', (req, res, next) => {
     const celebId = req.params.id;
     Celebrity.findById(celebId).then(celeb => {
