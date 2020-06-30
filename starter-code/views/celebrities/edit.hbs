@@ -1,7 +1,9 @@
+{{#with celeb}}
 <h2>Edit celebrity</h2>
 <form action = "/celebrities/{{_id}}" method = 'POST'>
-<input name = "name" placeholder = "Name" type = "text" value="{{name}}">
-<input name = "occupation" placeholder = "Occupation" type = "text" value="{{occupation}}">
-<input name = "catchPhrase" placeholder = "Catch phrase" type = "text" value="{{catchPhrase}}">
+<input name = "name" type = "text" value="{{name}}">
+<input name = "occupation" type = "text" value="{{occupation}}">
+<input name = "catchPhrase" type = "text" value="{{catchPhrase}}">
 <button type = "submit">Edit</button>
 </form>
+{{/with}}
