@@ -14,8 +14,11 @@ router.get('/celebrities', (req, res, next) => {
 
    
   });
-  
-  router.get('/celebrities/:_id', (req, res) => {
+
+router.get('/celebrities/new', (req, res) => {
+    res.render('celebrities/new');
+  });
+router.get('/celebrities/:_id', (req, res) => {
     const celebrityId = req.params._id;
     Celebrity.findById(celebrityId).then(celebrityFromDatabase => {
     res.render('celebrities/show', { celebrity: celebrityFromDatabase });
@@ -23,6 +26,27 @@ router.get('/celebrities', (req, res, next) => {
     console.log(err);
     });
     });   
+
+
+
+
+router.post('/celebrities', (req, res) => {
+            console.log(req.body);
+            const { name, occupation, catchphrase} = req.body;
+            Celebrity.save({
+                name: name,
+                occupation: occupation,
+                catchphrase: catchphrase
+            })
+            .then(celebrity => {
+              console.log(`Success! ${name} was added to the database.`);
+              res.redirect(`/celebrities`);
+            }).catch(err => {
+              console.log(err);
+              res.redirect('celebrities/new');
+            });
+          });
+          
 
 module.exports = router; 
 
