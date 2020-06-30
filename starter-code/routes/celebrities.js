@@ -31,7 +31,16 @@ router.post('/celebrities', (req, res, next) => {
             catchPhrase
         })
         .then(celebrity => res.redirect(`/celebrities/${celebrity._id}`))
+        .catch(error => next())
 })
 
+router.post('/celebrities/:id/delete', (req, res, next) => {
+    const celebrityId = req.params.id
+    // console.log(celebrityId)
+    Celebrity
+        .findByIdAndRemove(celebrityId)
+        .then(res.redirect('/celebrities'))
+        .catch(error => next())
+})
 
 module.exports = router;
