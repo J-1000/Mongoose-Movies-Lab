@@ -55,6 +55,14 @@ router.post('/celebrities/:id/delete', (req, res, next) => {
   })
 }); 
 
-
+// router.get('/celebrities/:id/edit', (req, res, next) => {
+//   Celebrity.findById(celebId) 
+//   .then((celebsFromDatabase) => {
+//     res.render('edit', {celeb:celebsFromDatabase})
+//   })
+//   .catch(err => {
+//     console.log(err)
+//   })
+// }); 
 
 module.exports=router; 
