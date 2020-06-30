@@ -1,5 +1,4 @@
 const express = require('express');
-const Book = require('../model/Celebrity');
 const Celebrity = require('../model/Celebrity');
 const router = express.Router();
 
@@ -15,6 +14,11 @@ router.get('/celebrities', (req, res, next) => {
   })
 });
 
+router.get('/celebrities/new', (req, res) => {
+  console.log('inside')
+  res.render('celebrities/new');
+})
+
 router.get('/celebrities/:_id', (req, res) => {
     const celebrityId = req.params._id;
     console.log('celebrityId');
@@ -24,11 +28,6 @@ router.get('/celebrities/:_id', (req, res) => {
       console.log(err);
     });
   });
-
-  router.get('/celebrities/new', (req, res) => {
-    res.render('celerityForm');
-  })
-
 
   router.post('/celebrities', (req, res) => {
     console.log(req.body);
@@ -47,6 +46,17 @@ router.get('/celebrities/:_id', (req, res) => {
     }).catch(err => {
       console.log(err);
     })
+  })
+
+  router.get('/celebrities/delete/:celebrityId', (req, res) => {
+    Celebrity.deleteOne({ _id: req.params.celebrityId })
+      .then(() => {
+        res.redirect('/celebrities');
+      })
+      .catch(err => {
+        console.log(err);
+        // next(err)
+      })
   })
 
 

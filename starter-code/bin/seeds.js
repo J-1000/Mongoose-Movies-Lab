@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Book = require('../model/Celebrity');
 const Celebrity = require('../model/Celebrity');
+// const Movie = require('../model/Movie');
 
 mongoose.connect('mongodb://localhost/celebrity-library', {
   useNewUrlParser: true
@@ -26,6 +27,13 @@ let celebrities = [
 ];
 
 
+
+// celebrities.forEach(celebrity => {
+//   Movie.create(celebrity.movie).then(dbMovie => {
+//     celebrity.movie = dbMovie._id;
+//     Celebrity.create(celebrity)
+//   })
+// })
 Celebrity.insertMany(celebrities)
   .then(celebrities => {
     console.log('Success! Added ' + celebrities.length + ' to the database');
