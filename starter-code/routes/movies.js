@@ -39,4 +39,31 @@ router.get('/movies', (req, res, next) => {
       })
   });
 
+// Trying to Edit
+router.get('/movies/edit/:movieId', (req, res) => {
+    Movie.findById(req.params.movieId).populate("cast")
+      .then(movie => {
+        res.render('movieEdit', { movie: movie })
+      }).catch(err => {
+        console.log(err);
+      });
+  });
+
+  router.post('/movies/:movieId', (req, res) => {
+    const { title, genre, plot, cast} = req.body;
+    Movie.findByIdAndUpdate(req.params.movieId, {
+      title,
+      genre,
+      plot,
+      cast
+    })
+      .then(movie => {
+        console.log('Movie has been updated', movie);
+        res.redirect(`/movies`);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  })
+
 module.exports = router;
