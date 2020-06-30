@@ -11,7 +11,11 @@ const path         = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/mongoose-movie-lab', {useNewUrlParser: true},)
+  .connect('mongodb://localhost/mongoose-movie-lab', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+},)
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -56,6 +60,9 @@ app.use('/', index);
 
 const celebrities = require('./routes/celebrities');
 app.use('/', celebrities); 
+
+const movies = require("./routes/movies");
+app.use("/", movies);
 
 
 module.exports = app;
