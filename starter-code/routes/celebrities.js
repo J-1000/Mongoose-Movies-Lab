@@ -47,4 +47,8 @@ router.post('/:id/delete', (req, res, next) => {
     });
 });
 
+router.get('/:id/edit', (req, res) => {
+    res.render('celebrities/edit');
+});
+
 module.exports = router;
