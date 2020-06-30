@@ -7,10 +7,12 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+
+
 router.get("/celebrities", (req, res) => {
   Celebs.find()
     .then((celebmodel) => {
-      console.log(Celebs);
+      console.log(Celebs, celebmodel);
       res.render("celebrities", { CelebList: celebmodel});
     })
     .catch((err) => {

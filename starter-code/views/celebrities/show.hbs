@@ -1,10 +1,11 @@
-<h2>this is the shows?</h2>
+<h2>this is the a celeb</h2>
 
-<p>
-    {{celebs}}
-    <h3>
-        {{this.name}}<br>
-        {{this.occupation}}<br>
-        {{this.catchPhrase}}<br>
-    </h3>
-</p>
+<div>
+    {{#each celebmodel}}
+    {{name}}<br> {{occupation}}<br> {{catchPhrase}}
+    {{/each}}
+    <p><a href="/celebrities/{{_id}}">celebrities</a></p>
+</div>
+
+
+
