@@ -42,8 +42,7 @@ router.get('/celebrities/:id', (req, res, next) => {
     });
 });
 
-router.get('/celebrities/:id/delete', (req, res, next) => {
-  console.log("Celebrity");
+router.post('/celebrities/:id/delete', (req, res, next) => {
   Celebrity.findByIdAndRemove(req.params.id)
   .then(() => {
     Celebrity.find().then((celebrityFromDB) => {
@@ -55,6 +54,5 @@ router.get('/celebrities/:id/delete', (req, res, next) => {
   })
 })
 });
-
 
 module.exports = router;
