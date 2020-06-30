@@ -1,0 +1,12 @@
+<h2> Celebrities page </h2>
+
+{{#each celebrities}}
+<div class="celebrity-container">
+<a href="/celebrity/{{this._id}}">
+  <p>{{this.name}}</p>
+</a>
+</div>
+
+{{/each}}
+
+<a href="/celebrities/new"> Add new celebrity </a>

@@ -1,0 +1,25 @@
+
+<div>
+  
+  
+  <form action="/movie/edit/{{movie.id}}" method="POST">
+    <input type="text" placeholder="title" name="title" value="{{movie.title}}" />
+    <input type="text" placeholder="genre" name="genre" value="{{movie.genre}}" /> 
+    <input type="text" placeholder="plot" name="plot" value="{{movie.plot}}"/>
+    <br>
+  {{#each celebrities}}
+    {{#if this.name}}
+    <input type="checkbox" id="{{this.name}}" name="cast" value="{{this._id}}">
+    <label for="{{this.name}}"> {{this.name}}</label><br>
+    {{/if}}
+  {{/each}}
+  
+    
+
+
+    <button type="submit"> Update Movie </button>
+  </form>
+
+
+
+</div>

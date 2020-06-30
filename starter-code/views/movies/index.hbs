@@ -1,0 +1,19 @@
+<h2> Movies page</h2>
+
+{{#each movies}}
+<div class="movies-container">
+<a href="/movie/{{this._id}}">
+  <p>{{this.title}}</p>
+</a>
+
+  <ul> Cast: 
+    {{#each cast}}
+    <li>{{name}}</li>
+  {{/each}}
+  </ul>
+
+</div>
+
+{{/each}}
+
+<a href="/movies/new"> Add new movie </a>

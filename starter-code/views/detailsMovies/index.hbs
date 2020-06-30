@@ -1,0 +1,22 @@
+<h2> Movies Details page </h2>
+
+
+<div class="movie-container">
+
+  <p> Title: {{movie.title}}</p>
+  <p> Genre: {{movie.genre}}</p>
+  <p> Plot: {{movie.plot}}</p>
+  <ul> Cast: 
+    {{#each movie.cast}}
+      <li>{{name}}</li>
+    {{/each}}
+  </ul>
+  
+  
+  <a href="/movie/edit/{{movie._id}}">Edit movie</a>
+  <br> 
+  <a href="/movie/delete/{{movie._id}}">Delete movie</a>
+
+
+</div>
+

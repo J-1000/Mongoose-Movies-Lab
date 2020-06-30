@@ -1,0 +1,21 @@
+<div>
+  <form action="/movies" method="POST">
+    <input type="text" placeholder="title" name="title" />
+    <input type="text" placeholder="genre" name="genre" /> 
+    <input type="text" placeholder="plot" name="plot" />
+    <br>
+  {{#each this}}
+    {{#if name}}
+    <input type="checkbox" id="{{name}}" name="cast" value="{{id}}">
+    <label for="{{name}}"> {{name}}</label><br>
+    {{/if}}
+  {{/each}}
+    
+
+
+    <button type="submit"> Add new Movie </button>
+  </form>
+
+
+
+</div>
