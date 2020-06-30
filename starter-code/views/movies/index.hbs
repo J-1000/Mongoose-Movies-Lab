@@ -1,0 +1,18 @@
+{{#each movies}}
+
+<h2>{{title}}</h2>
+<p>Genre: {{genre}}</p>
+<p>Plot: {{plot}}</p>
+<p>
+    Cast:
+        <ul>
+            {{#each cast}}
+                 <li>{{name}}</li>
+            {{/each}}
+        </ul>
+</p>
+{{/each}}
+
+<a href="/movies/new">
+    Create a new movie!
+</a>
