@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
       console.log(error);
       res.redirect('/celebrities/new');
     })
-  }); 
+}); 
 
 router.get('/:id', (req, res, next) => {
     const celebId = req.params.id;
@@ -37,7 +37,7 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.post('/:id', (req, res) => {
+router.post('/:id', (req, res, next) => {
     const { name, occupation, catchPhrase } = req.body;
     Celebrity.findByIdAndUpdate(req.params.id, {
         name, 
@@ -49,6 +49,7 @@ router.post('/:id', (req, res) => {
         })
         .catch(err => {
           console.log(err);
+          next(err);
         });
 });
 
@@ -69,6 +70,7 @@ router.get('/:id/edit', (req, res) => {
     }).catch(err => {
         console.log(err);
         next(err);
-    });});
+    });
+});
 
 module.exports = router;
