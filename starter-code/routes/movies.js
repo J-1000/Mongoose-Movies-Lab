@@ -60,12 +60,13 @@ router.get('/movies/:id/edit', (req, res) => {
 });
 
 router.post('/movies/:id', (req,res) => {
-    const { title, genre, plot} = req.body;
+    const { title, genre, plot, cast} = req.body;
     const movieId = req.params.id;
     Movie.findByIdAndUpdate(movieId,{
         title,
         genre,
-        plot
+        plot,
+        cast
     })
     .then(() => {
       res.redirect('/movies');

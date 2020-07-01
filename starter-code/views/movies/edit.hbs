@@ -4,6 +4,11 @@
 <input name = "title" type = "text" value="{{title}}">
 <input name = "genre" placeholder = "Genre" type = "text" value="{{genre}}">
 <input name = "plot" placeholder = "Plot" type = "text" value="{{plot}}">
+<select name="celebrities" id="">
+        {{#each celebrity}}
+        <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+        </select>
 <button type = "submit">Edit</button>	
 </form>
 {{/with}}
