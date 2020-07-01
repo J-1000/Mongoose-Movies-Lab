@@ -3,5 +3,10 @@
 <input type="text" name='title' >
 <input type="text" name="genre" >
 <input type="text" name="plot" >
+<select name="cast" multiple>
+{{#each celebs}}
+<option value="{{_id}}">{{name}}</option>
+{{/each}}
+</select>
 <button type="submit">add a movie</button>
 </form>

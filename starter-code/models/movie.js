@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const { schema } = require('./celebrity');
 const Schema = mongoose.Schema;
 const movieSchema = new Schema({
-    title : {type:String,
-    minlength:3},
+    title : String,
     genre : String,
     plot : String,
     cast :[{
