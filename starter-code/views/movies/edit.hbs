@@ -1,17 +1,11 @@
-{{#with movie}}
 <h2>Edit your movie</h2>
-<form action = "/movies/{{_id}}" method = 'POST'>
-<input name = "title" placeholder = "Title" type = "text" value = "{{title}}">
-<input name = "genre" placeholder = "Genre" type = "text" value = "{{genre}}">
-<input name = "plot" placeholder = "Plot" type = "textarea" value = "{{plot}}">
+<form action = "/movies/{{movie._id}}" method = 'POST'>
+    <input name = "title" placeholder = "Title" type = "text" value = "{{movie.title}}">
+    <input name = "genre" placeholder = "Genre" type = "text" value = "{{movie.genre}}">
+    <input name = "plot" placeholder = "Plot" type = "textarea" value = "{{movie.plot}}">
 
-<select name="cast" multiple>
-{{/with}}
-    
-{{#each celeb}}
-    <option value="{{this._id}}">{{this.name}}</option> 
-{{/each}}
-</select>
-<button type = "submit">Add</button>
+    <select name="cast" multiple>
+        {{{ options }}} 
+    </select>
+    <button type = "submit">Edit</button>
 </form>
-

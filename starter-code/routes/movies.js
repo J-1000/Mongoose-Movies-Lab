@@ -34,11 +34,15 @@ router.post('/', (req, res) => {
 }); 
 
 router.get('/:id/edit', (req, res) => {
-    // res.send('edit movie');
-    Celebrity.find().then(celeb => {
-        Movie.findById(req.params.id).then(movie => {
-            //console.log('should be one movie:', movie, 'should be all celebs: ', celeb);
-            res.render('movies/edit', { movie: movie, celeb: celeb });
+    Movie.findById(req.params.id).then(movie => {
+      Celebrity.find().then(celeb => {
+          let selected = '';
+          let options = '';
+          celeb.forEach(actor => {
+            movie.cast.includes(actor._id) ? selected = 'selected' : selected = '';
+            options += `<option value="${actor._id}" ${selected}>${actor.name}</option>`
+          })
+          res.render('movies/edit', { movie, options });
         })
     }).catch(err => {
         console.log(err);
