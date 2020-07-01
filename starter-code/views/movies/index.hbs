@@ -3,5 +3,10 @@
 <a href="/movies/{{_id}}">
   <h3>{{title}}</h3>
 </a>
+<form action="/movies/{{_id}}/delete" , method="post">
+  <button type="submit">delete movie</button>
+</form>
+<form action="/movies/{{_id}}/edit" method="post">
+  <button type="submit">edit movie</button>
+</form>
 {{/each}}
-<a href="/movies/new">Add a new Movie</a>
