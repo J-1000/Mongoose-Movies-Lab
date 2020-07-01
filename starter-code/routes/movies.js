@@ -3,39 +3,60 @@ const router = express.Router();
 const Movie = require('../models/Movie');
 const Celebrity = require('../models/Celebrity');
 
-router.get('/movies/new', (req, res, next) => {
-  Celebrity.find().then(celebrityFromDB => {
-    res.render('moviesform', { celebList: celebsFromDatabase })
-  }).catch(err => {
-    console.log(err);
+router.get('/movies', (req, res, next) => {
+  Movie.find().populate('cast')
+  .then((moviesFromDatabase) => {
+    console.log(moviesFromDatabase)
+    res.render('movies', {movieList: moviesFromDatabase});
+  }) 
+  .catch(err => {
+    console.log(err); 
   })
 });
 
-router.post('/movies', (req, res) => {
-
-  const { title, genre, plot, cast } = req.body;
-  console.log(cast, req.body);
-  Movie.create({
-    title: title,
-    genre: genre,
-    plot: plot,
-    cast: cast
-  }).then(movie => {
-    console.log(`Success! ${title} was added to the database.`);
-    res.redirect(`/movies`);
-  }).catch(err => {
-    console.log(err);
-  })
-})
 
 router.get('/movies', (req, res, next) => {
-  Movie.find().populate("cast")
-  .then((movieFromDB) => {
-    res.render('movies', { movieList: movieFromDB })
-  })
+  Movie.find().populate('cast')
+  .then((moviesFromDatabase) => {
+    console.log(moviesFromDatabase)
+    res.render('movies', {movieList: moviesFromDatabase});
+  }) 
   .catch(err => {
-    console.log(err);
+    console.log(err); 
   })
 });
+
+// router.post('/movies', (req, res) => {
+
+//   const { title, genre, plot, cast } = req.body;
+//   console.log(cast, req.body);
+//   Movie.create({
+//     title: title,
+//     genre: genre,
+//     plot: plot,
+//     cast: cast
+//   }).then(movie => {
+//     console.log(`Success! ${title} was added to the database.`);
+//     res.redirect(`/movies`);
+//   }).catch(err => {
+//     console.log(err);
+//   })
+// })
+
+router.post('/movies', (req, res) => {
+  const {title, genre, plot, cast} = req.body; 
+  console.log(req.body); 
+  Movie.create({
+    title: title, 
+    genre: genre, 
+    plot: plot, 
+    cast: cast
+  }).then(movie => {
+    console.log(`Success, movie ${title} has been added.`); 
+    res.redirect('/movies'); 
+  }).catch(err => {
+    console.log(err); 
+  })
+}); 
 
 module.exports = router; 
