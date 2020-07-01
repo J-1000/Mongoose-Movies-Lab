@@ -11,7 +11,7 @@
 
     <select name="cast" id="" multiple>
         {{#each celebrity}}
-        <option value="{{this._id}}">{{this.name}}</option>
+        <option value="{{this._id}}" selected>{{this.name}}</option>
         {{/each}}
     </select>
     <button type="submit">Add a Movie</button>

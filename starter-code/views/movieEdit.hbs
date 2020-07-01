@@ -8,12 +8,12 @@
     <label for="plot">Plot: </label>
     <input type="text" name="plot" id="plot" value="{{movie.plot}}">
 
-    <label for="cast">Cast: </label>
+    {{!-- <label for="cast">Cast: </label> --}}
     <select name="cast" id="" multiple>
-        {{#each celebrities}}
-        <h1>Banana</h1>
-        <option value="{{this._id}}">{{this.name}}</option>
-        {{/each}}
+        {{!-- {{#each celebrities}}
+        <option value="{{this._id}}" selected>{{this.name}}</option>
+        {{/each}} --}}
+        {{{ options }}}
     </select>
     <button type="submit">Edit a movie</button>
 </form>

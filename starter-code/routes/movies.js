@@ -43,7 +43,18 @@ router.get('/movies/edit/:movieId', (req, res) => {
     Movie.findById(req.params.movieId).populate("cast")
       .then(movie => {
         Celebrity.find().then(celebrities => {
-          res.render('movieEdit', { movie: movie, celebrities: celebrities })
+          let options = '';
+          let selected = '';
+          celebrities.forEach(actor => {
+            if(movie.cast.map(el => el._id).includes(actor._id)) {
+              selected = 'selected';
+            } else {
+              selected = '';
+            }
+            options += `<option value="${actor._id}" ${selected}>${actor.name}</option>`;
+          })
+          // res.render('movieEdit', { movie: movie, celebrities: celebrities })
+          res.render('movieEdit', { movie: movie, options})
         })
       }).catch(err => {
         console.log(err);
