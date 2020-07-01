@@ -43,11 +43,8 @@ router.get('/movies/edit/:movieId', (req, res) => {
     Movie.findById(req.params.movieId).populate("cast")
       .then(movie => {
         Celebrity.find().then(celebrities => {
-          console.log(celebrities);
-          
           res.render('movieEdit', { movie: movie, celebrities: celebrities })
         })
-        
       }).catch(err => {
         console.log(err);
       });
