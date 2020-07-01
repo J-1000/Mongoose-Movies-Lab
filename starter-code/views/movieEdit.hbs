@@ -1,20 +1,19 @@
-  
-{{#with movie}}
-<form action="/movies/{{_id}}" method="post">
+<form action="/movies/{{movie._id}}" method="post">
     <label for="title">Title: </label>
-    <input type="text" name="title" id="title" value="{{title}}">
+    <input type="text" name="title" id="title" value="{{movie.title}}">
 
     <label for="genre">Genre: </label>
-    <input type="text" name="genre" id="genre" value="{{genre}}">
+    <input type="text" name="genre" id="genre" value="{{movie.genre}}">
 
     <label for="plot">Plot: </label>
-    <input type="text" name="plot" id="plot" value="{{plot}}">
+    <input type="text" name="plot" id="plot" value="{{movie.plot}}">
 
     <label for="cast">Cast: </label>
-    {{#each cast}}
-    <input type="text" name="cast" id="cast" value="{{name}}">
-    {{/each}}
-
+    <select name="cast" id="" multiple>
+        {{#each celebrities}}
+        <h1>Banana</h1>
+        <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
     <button type="submit">Edit a movie</button>
 </form>
-{{/with}}

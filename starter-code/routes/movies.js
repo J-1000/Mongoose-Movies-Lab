@@ -39,11 +39,15 @@ router.get('/movies', (req, res, next) => {
       })
   });
 
-// Trying to Edit
 router.get('/movies/edit/:movieId', (req, res) => {
     Movie.findById(req.params.movieId).populate("cast")
       .then(movie => {
-        res.render('movieEdit', { movie: movie })
+        Celebrity.find().then(celebrities => {
+          console.log(celebrities);
+          
+          res.render('movieEdit', { movie: movie, celebrities: celebrities })
+        })
+        
       }).catch(err => {
         console.log(err);
       });
