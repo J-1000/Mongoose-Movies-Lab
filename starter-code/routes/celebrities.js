@@ -18,6 +18,23 @@ router.get('/celebrities/:id', (req, res, next) => {
         .catch(error => next())
 })
 
+router.get('/celebrities/:id/edit', (req, res, next) => {
+    Celebrity
+        .findById(req.params.id)
+        .then(celebrity => res.render('celebrities/edit', {celebrity}))
+        .catch(error => next())
+})
+
+router.post('/celebrities/:id', (req, res, next) => {
+    const {name, occupation, catchPhrase} = req.body;
+    // console.log(name, occupation, catchPhrase)
+    // console.log(req.params.id)
+    Celebrity
+        .findByIdAndUpdate(req.params.id, {name, occupation, catchPhrase})
+        .then(res.redirect('/celebrities'))
+        .catch(error => next())
+})
+
 router.get('/celebrities/new', (req, res) => {
     res.render('celebrities/new')
 })
