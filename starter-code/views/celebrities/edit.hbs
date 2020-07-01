@@ -1,11 +1,12 @@
+<h2>sometimes people change</h2>
 
-<form action="/celebrities/edit" method="post">
+
+<form action="/celebrities/{{_id}}/edit" method="POST">
     <label for="name">NAME: </label>
     <input type="text" name="name" id="name">
     <label for="occupation">occupation: </label>
     <input type="text" name="occupation" id="occupation">
     <label for="catchPhrase">catch Phrase: </label>
     <input type="text" name="catchPhrase" id="catchPhrase"> <br>
-    <button type="submit">Add a celeb</button>
+    <button type="submit">edit a celeb</button>
 </form>
-

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Celebmodel = require("../models/celebrity");
+const Celebs = require("../models/celebrity");
 
 mongoose.connect("mongodb://localhost/starter-code", {
   useCreateIndex: true,
@@ -29,7 +29,7 @@ const celebs = [
 // Add here the script that will be run to actually seed the database (feel free to refer to the previous lesson)
 
 // ... your code here
-Celebmodel.create(celebs)
+Celebs.create(celebs)
   .then((celebs) => {
     //   console.log("this is the celebs var",)
     console.log("Success! Added " + celebs.length + " celebrities to the database");
