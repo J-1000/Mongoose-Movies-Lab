@@ -92,4 +92,16 @@ router.post('/movies/:id/edit', (req, res, next) => {
         })
 });
 
+router.post('/movies/:id/delete', (req, res, next) => {
+    const movieId = req.params.id;
+    Movie.findByIdAndRemove(movieId)
+        .catch(error => {
+            console.log('Error: ', error);
+            next();
+        })
+        .then((oneMovie) => {
+            res.redirect('/movies');
+        })
+});
+
 module.exports = router;
