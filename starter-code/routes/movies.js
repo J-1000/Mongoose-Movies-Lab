@@ -46,4 +46,50 @@ router.post('/movies', (req, res, next) => {
         })
 });
 
+router.get('/movies/:id/edit', (req, res, next) => {
+    const movieId = req.params.id;
+    Movie.findById(movieId).populate('cast')
+        .then(oneMovie => {
+            Celebrity.find().then(allCelebrities => {
+                // console.log(allCelebrities);
+                res.render('movies/edit', {
+                    movies: oneMovie,
+                    celebrities: allCelebrities
+                });
+            })
+        })
+        .catch(error => {
+            console.log('Error: ', error);
+            next();
+        })
+});
+
+router.post('/movies/:id/edit', (req, res, next) => {
+    const {
+        title,
+        genre,
+        plot,
+        cast
+    } = req.body;
+    Movie.update({
+            _id: req.params.id
+        }, {
+            $set: {
+                title,
+                genre,
+                plot,
+                cast
+            }
+        }, {
+            new: true
+        })
+        .then((oneMovie) => {
+            res.redirect('/movies');
+        })
+        .catch((error) => {
+            res.render('movies/new');
+            console.log(error);
+        })
+});
+
 module.exports = router;

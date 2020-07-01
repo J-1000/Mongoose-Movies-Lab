@@ -11,6 +11,10 @@
             {{/each}}
         </ul>
 </p>
+    <form action="/movies/{{_id}}/edit" method="get">
+        <button type="submit">Edit</button>
+    </form>
+    
 {{/each}}
 
 <a href="/movies/new">
