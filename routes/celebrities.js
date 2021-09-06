@@ -41,11 +41,37 @@ router.post("/celebrities/:id/delete", (req, res, next) => {
         })
 });
 
+router.get("/celebrities/:id/edit", (req, res, next) => {
+    const celebrityId = req.params.id;
+    Celebrity.findById(celebrityId)
+        .then(celebrityFromDB => {
+            res.render("celebrities/edit", { celebrity: celebrityFromDB });
+        }).catch(err => { 
+            next(err);
+        })
+});
+
+
 router.get("/celebrities/:id", (req, res, next) => {
     const celebrityId = req.params.id;
     Celebrity.findById(celebrityId)
         .then(celebrityFromDB => {
             res.render("celebrities/show", { celebrity: celebrityFromDB });
+        }).catch(err => { 
+            next(err);
+        })
+});
+
+router.post("/celebrities/:id", (req, res, next) => {
+    const celebrityId = req.params.id;
+    const { name, occupation, catchPhrase } = req.body;
+    Celebrity.findByIdAndUpdate(celebrityId, {
+        name:name,
+        occupation:occupation,
+        catchPhrase:catchPhrase
+    }, {new:true})
+        .then(() => {
+            res.redirect(`/celebrities/${celebrityId}`);
         }).catch(err => { 
             next(err);
         })
