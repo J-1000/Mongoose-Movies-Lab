@@ -12,7 +12,6 @@ router.get("/celebrities/index", (req, res, next) => {
         })
 });
 
-
 router.post('/celebrities/index', (req, res, next) => {
 	console.log(req.body);
 	const { name, occupation, catchPhrase } = req.body;
@@ -30,6 +29,16 @@ router.post('/celebrities/index', (req, res, next) => {
 
 router.get("/celebrities/new", (req, res, next) => {
     res.render('celebrities/new');
+});
+
+router.post("/celebrities/:id/delete", (req, res, next) => {
+    const celebrityId = req.params.id;
+    Celebrity.findByIdAndDelete(celebrityId)
+        .then(() => {
+            res.redirect("/celebrities/index");
+        }).catch(err => { 
+            next(err);
+        })
 });
 
 router.get("/celebrities/:id", (req, res, next) => {
