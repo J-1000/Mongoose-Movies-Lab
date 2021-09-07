@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { render } = require("../app");
 const Celebrity = require('../models/Celebrity');
 
 /* GET home page */

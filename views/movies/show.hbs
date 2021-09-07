@@ -1,0 +1,11 @@
+{{#with movie}}
+    <h2>This is the detailed Page for {{Title}} 😜</h2>
+    <p>Title : {{title}}</p>
+    <p>Genre : {{genre}}</p>
+    <p>Plot : {{plot}}</p>
+    <p>Cast: </p>
+    {{#each cast}}
+        <p>{{name}}</p>
+    {{/each}}
+    <a href="/movies/{{_id}}/edit">Edit Page</a>
+{{/with}}
