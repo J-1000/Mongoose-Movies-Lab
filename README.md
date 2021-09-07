@@ -284,7 +284,7 @@ Here's the route we will be using:
 
 |     Route     | HTTP Verb |      Description      |
 |---------------|-----------|-----------------------|
-| `/movies/` |    GET    | Show all celebrities |
+| `/movies/` |    GET    | Show all movies |
 
 ### Steps we will follow in this iteration:
 
