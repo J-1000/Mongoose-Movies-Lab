@@ -21,7 +21,6 @@ router.get("/movies/new", (req, res, next) => {
 });
 
 router.post('/movies', (req, res, next) => {
-	console.log(req.body);
 	const { title, genre, plot, cast } = req.body;
 	Movie.create({
 		title: title,
@@ -46,13 +45,35 @@ router.get("/movies/:id", (req, res, next) => {
         })
 });
 
+
+router.post("/movies/:id", (req, res, next) => {
+    
+});
+
 router.get("/movies/:id/edit", (req, res, next) => {
     const movieId = req.params.id;
-    console.log(movieId)
-    Movie.findById(movieId).populate('cast')
+    const castList = [];
+    const nonCastList = [];
+    Movie.findById(movieId)
         .then(movieFromDB => {
-            console.log(movieFromDB)
-            res.render("movies/edit", { movie: movieFromDB });
+                (async function selected() {
+                    const celebrities = await Celebrity.find();
+                    for (let cast of movieFromDB.cast) {
+                        const celecbrityFromDB = await Celebrity.findById(cast.toString())
+                        for (let celebrity of celebrities) {
+                            if (celebrity._id.toString() === cast.toString()) {
+                                castList.push(celecbrityFromDB)
+                            } else {
+                                nonCastList.push(celebrity)
+                            }
+                        }
+                    }
+                    if (castList.length === movieFromDB.cast.length){
+                        res.render("movies/edit", { movie: movieFromDB, casts: castList, nonCasts: nonCastList});
+                    }
+                    
+                })();
+            
         }).catch(err => { 
             next(err);
         })
