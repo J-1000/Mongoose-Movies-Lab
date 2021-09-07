@@ -83,9 +83,17 @@ router.get("/movies/:id/edit", (req, res, next) => {
                     if (castList.length === movieFromDB.cast.length){
                         res.render("movies/edit", { movie: movieFromDB, casts: castList, nonCasts: nonCastList});
                     }
-                    
                 })();
-            
+        }).catch(err => { 
+            next(err);
+        })
+});
+
+router.post("/movies/:id/delete", (req, res, next) => {
+    const moviesId = req.params.id;
+    Movie.findByIdAndDelete(moviesId)
+        .then(() => {
+            res.redirect("/movies/index");
         }).catch(err => { 
             next(err);
         })
