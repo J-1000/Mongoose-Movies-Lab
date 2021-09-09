@@ -13,12 +13,7 @@
 
     <label for="cast">Cast: </label>
     <select name="cast" id="cast" multiple>
-        {{#each casts}}
-            <option value="{{_id}}" selected>{{name}}</option>
-        {{/each}}
-        {{#each nonCasts}}
-            <option value="{{_id}}">{{name}}</option>
-        {{/each}}
+        {{{option}}}
     </select>
 	<button type="submit">Edit this Movie</button>
 </form>

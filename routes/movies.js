@@ -64,26 +64,18 @@ router.post("/movies/:id", (req, res, next) => {
 
 router.get("/movies/:id/edit", (req, res, next) => {
     const movieId = req.params.id;
-    const castList = [];
-    const nonCastList = [];
-    Movie.findById(movieId)
+    Movie.findById(movieId).populate('cast')
         .then(movieFromDB => {
-                (async function selected() {
-                    const celebrities = await Celebrity.find();
-                    for (let cast of movieFromDB.cast) {
-                        const celecbrityFromDB = await Celebrity.findById(cast.toString())
-                        for (let celebrity of celebrities) {
-                            if (celebrity._id.toString() === cast.toString()) {
-                                castList.push(celecbrityFromDB)
-                            } else {
-                                nonCastList.push(celebrity)
-                            }
-                        }
-                    }
-                    if (castList.length === movieFromDB.cast.length){
-                        res.render("movies/edit", { movie: movieFromDB, casts: castList, nonCasts: nonCastList});
-                    }
-                })();
+            Celebrity.find().then(celebrities => {
+                let option = "";
+                let selected = "";
+                celebrities.forEach(actor => {
+                    selected = movieFromDB.cast.map(el => el._id).includes(actor._id) ? ' selected' : "";
+                    option += `<option value = "${actor._id}" ${selected}>${actor.name}</option>`
+                })
+                console.log(option)
+                res.render("movies/edit", { movie: movieFromDB, option:option});
+            })
         }).catch(err => { 
             next(err);
         })
