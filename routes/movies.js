@@ -70,7 +70,7 @@ router.get("/movies/:id/edit", (req, res, next) => {
                 let option = "";
                 let selected = "";
                 celebrities.forEach(actor => {
-                    selected = movieFromDB.cast.map(el => el._id).includes(actor._id) ? ' selected' : "";
+                    selected = movieFromDB.cast.map(el => el._id.toString()).includes(actor._id.toString()) ? ' selected' : "";
                     option += `<option value = "${actor._id}" ${selected}>${actor.name}</option>`
                 })
                 console.log(option)
