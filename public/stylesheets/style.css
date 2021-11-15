@@ -1,0 +1,37 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+a {
+    color: #00b7ff;
+    text-decoration: none;
+}
+
+h1 {
+    color: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+#celebrity {
+    display: grid;
+    width: 30%;
+}
+
+#add-celebrity {
+    padding-top: 30px;
+}
+
+input {
+    margin-bottom: 20px;
+}
