@@ -7,7 +7,7 @@ const celebritySchema = new Schema(
       unique: true 
     },
     occupation: String,
-    catchPhrase: String
+    catchPhrase: String,
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
