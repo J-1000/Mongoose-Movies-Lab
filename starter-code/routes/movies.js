@@ -63,13 +63,14 @@ router.get('/movies/:id/edit', async (req, res, next) => {
     const id = req.params.id
     const movie = await Movie.findById(id)
     const celebrities = await Celebrity.find()
-    let selected = []
+
+    let selected = ''
     let option = ''
     celebrities.forEach(c => {
       selected = movie.cast.map(cb => cb._id.toString().includes(c._id.toString()) ? 'selected' : '')
       option += `<option value="${c._id}" ${selected}>${c.name}</option>`
     })
- 
+  
     res.render('movies/edit', { movie, selected: option })
   } catch (error) {
     next(new Error(error.message))
@@ -80,13 +81,15 @@ router.post('/movies/:id', async (req, res, next) => {
   try {
     const id = req.params.id
     const { title, genre, plot, cast } = req.body
+    const movie = await Movie.findById(id)
+    if (movie.cast.length > 0) {
+      movie.cast.push(cast)
+    }
     await Movie.findByIdAndUpdate(id, {
       title,
       genre,
       plot,
-      cast,
-      // TODO: should be able to have multiple celebrities
-      //cast: {$push: { cast }}
+      cast: movie.cast
     }, { new: true })
     res.redirect(`/movies/${id}`)
   } catch (error) {
