@@ -13,10 +13,6 @@ a {
     text-decoration: none;
 }
 
-h1 {
-    color: 15px;
-}
-
 form {
     display: flex;
     flex-direction: column;
@@ -28,7 +24,16 @@ form {
     width: 30%;
 }
 
+#movie {
+    display: grid;
+    width: 30%;
+}
+
 #add-celebrity {
+    padding-top: 30px;
+}
+
+#add-movie {
     padding-top: 30px;
 }
 

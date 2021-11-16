@@ -48,7 +48,7 @@ router.post('/celebrities/:id/delete', (req, res) => {
         .catch(err => next(err))
 });
 
-router.post('/celebrities/:id', (req, res) => {
+router.post('/celebrities/:id', (req, res, next) => {
     const {name, occupation, catchPhrase} = req.body;
     Celebrity.findByIdAndUpdate(req.params.id, {name, occupation, catchPhrase}, {new: true})
         .then(() => {
