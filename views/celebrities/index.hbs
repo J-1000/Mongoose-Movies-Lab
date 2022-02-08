@@ -4,6 +4,11 @@
     <h3>
       <li><a href='/celebrities/{{_id}}'>{{name}}</a></li>
     </h3>
+    <form action='/celebrities/{{_id}}/delete' method='POST'>
+      <button type='submit'>Delete this celebrity</button>
+    </form>
+    <br />
+    <a href='/celebrities/{{_id}}/edit'>Or just edit</a>
   {{/each}}
 </ul>
 <h2><a href='/celebrities/new'>Add new celebrity</a></h2>
