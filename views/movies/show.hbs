@@ -1,0 +1,10 @@
+<h2>Details about {{movie.title}}</h2>
+<ul>
+  <li>Genre is: {{movie.genre}}</li>
+  <p>Plot: {{movie.plot}}</p>
+  <h4>The celebrities are:</h4>
+  {{#each movie.cast}}
+    <li><a href='/celebrities/{{_id}}'>{{name}}</a></li>
+    <br />
+  {{/each}}
+</ul>
