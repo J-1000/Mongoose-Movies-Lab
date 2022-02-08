@@ -2,5 +2,9 @@
 <ul>
   {{#each movies}}
     <li><a href='/movies/{{_id}}'>{{title}}</a></li>
+    <br />
+    <a href='/movies/delete/{{_id}}'>Delete this movie❌</a>
+    <br />
+    <br />
   {{/each}}
 </ul>

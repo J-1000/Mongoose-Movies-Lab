@@ -33,6 +33,13 @@ router.get('/movies', (req, res, next) => {
     .catch((err) => next(err));
 });
 
+router.get('/movies/delete/:id', (req, res, next) => {
+  const id = req.params.id;
+  Movie.findByIdAndDelete(id)
+    .then(() => res.redirect('/movies'))
+    .catch((err) => next(err));
+});
+
 router.get('/movies/:id', (req, res, next) => {
   const id = req.params.id;
   Movie.findById(id)
