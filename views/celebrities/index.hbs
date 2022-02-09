@@ -1,0 +1,12 @@
+<h2>List of celebrities</h2>
+    {{#each displayCelebrities}}
+        <div>
+            <a href="/celebrities/{{_id}}">{{name}}</a>
+            {{!-- Iteration #5: Deleting Celebrities --}}
+             <form action="/celebrities/{{_id}}/delete" method="POST">
+                 <button type="submit">Remove</button>
+             </form>
+        </div>
+    {{/each}}
+
+<a href="/celebrities/new">Add a new celebrity</a>

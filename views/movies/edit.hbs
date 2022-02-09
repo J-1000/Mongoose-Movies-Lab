@@ -1,0 +1,18 @@
+{{!-- Iteration #11 Editing a movie --}}
+<h2>Edit the {{movie.title}} Movie</h2>
+<form action="/movies/{{movie._id}}/edit" method="POST">
+    <label for="title">Title:</label><br>
+    <input type="text" name="title" id="title" value="{{movie.title}}"><br>
+    <label for="genre">Genre:</label><br>
+    <input type="text" name="genre" id="genre" value="{{movie.genre}}"><br>
+    <label for="plot">Plot:</label><br>
+    <textarea name="plot" id="plot" cols="30" rows="10">{{movie.plot}}</textarea><br>
+    <label for="cast">Cast:</label> <br>
+    {{!-- shows the list of the celebrities, select multiple --}}
+    {{!-- Iteration #12 (Bonus): Editing the cast of a movie as well --}}
+    {{!-- // https://axiacore.com/blog/check-if-item-array-handlebars-547/ --}}
+    {{#each celebrities}}
+        <input type="checkbox" name="cast" value="{{this._id}}" {{#ifIn this._id ../movie.cast }}checked{{/ifIn}}>{{this.name}}<br>
+    {{/each}}
+    <button type="submit">Save</button>
+</form>
