@@ -1,0 +1,13 @@
+<h2 class="titulo"> This are a bit unkonwns celebrities</h2>
+
+ {{#each celebrities}}
+	
+		<h3>{{this.name}}</h3>
+		<a href="/celebrities/{{_id}}">See more 📝</a>
+		<a href="/celebrities/delete/{{_id}}">Erase this "Famoso" from the list ❌</a>
+{{/each}}
+<div>""</div>
+<div>
+<a href="/celebrities/add">Add a "Famoso" 📕</a>
+
+</div>
