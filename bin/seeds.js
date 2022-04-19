@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Celebrity = require('../models/Celebrity');
+const Celebrity = require('../models/Celebrity.js');
 
 mongoose.connect('mongodb://localhost/boilerplate')
 

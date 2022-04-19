@@ -2,12 +2,12 @@ const router = require("express").Router();
 const Celebrity = require("../models/Celebrity");
 
 
-router.get('/celebrities', (req, res, next) => {
+router.get('/', (req, res, next) => {
 	// get all the books from the db
 	Celebrity.find()
 		.then(celebrities => {
 			console.log(celebrities)
-			res.render('celebrities/index', { celebrities })
+			res.render('celebrities', { celebrities })
 		})
 		.catch(err => {
 			next(err)
@@ -15,23 +15,15 @@ router.get('/celebrities', (req, res, next) => {
     })
 
 
-router.get('/celebrities/:id', (req, res, next) => {
-const id = req.params.id
-
-Celebrity.findById(id)
-	.then(celebrities => res.render('celebrities/show', { celebrities }))
-    .catch(err => {
-    next(err)
-    })
-}); 
 
 
-router.get('/celebrities/new', (req, res, next) => {
+
+router.get('/new', (req, res, next) => {
 res.render('celebrities/new')
 });
 	
 
-router.post('/celebrities', (req, res, next) => {
+router.post('/', (req, res, next) => {
 	const { name, occupation, catchPhrase } = req.body
 	//console.log(name, occupation, catchPhrase)
 	Celebrity.create({
@@ -51,5 +43,14 @@ router.post('/celebrities', (req, res, next) => {
 });
 
 
+router.get('/:id', (req, res, next) => {
+	const id = req.params.id
+	
+	Celebrity.findById(id)
+		.then(celebrities => res.render('celebrities/show', { celebrities }))
+		.catch(err => {
+		next(err)
+		})
+	}); 
 
 module.exports = router; 
