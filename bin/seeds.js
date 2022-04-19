@@ -7,7 +7,7 @@ const celebrities = [
     {
         name : 'Kristen Stewart',
         occupation : 'Actress',
-        catchPhrase : 'Channel\'s Muse'
+        catchPhrase : 'Chanel\'s Muse'
     },
     {  
         name : 'Tang Wei',

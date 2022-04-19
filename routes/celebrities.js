@@ -44,6 +44,18 @@ router.get('/celebrities/:id', (req, res, next) => {
 		})
 })
 
+router.get('/celebrities/edit', (req, res, next) => {
+    const id = req.params.id
+    Celebrity.findOne(id)
+    .then(celebrityFromDB => {
+        res.render('celebrities/edit', {celebrities : celebrityFromDB})
+    })
+    .catch(err => {
+        next(err)
+    })
+
+})
+
 router.post('/celebrities/:id/delete', (req, res, next) => {
     const id = req.params.id
     Celebrity.findByIdAndRemove(id)
@@ -55,24 +67,15 @@ router.post('/celebrities/:id/delete', (req, res, next) => {
     })
 })
 
-// router.get('celebrities/:id/edit', (req, res, next) => {
-//     const id = req.params.id
-//     Celebrity.findOne(id)
-//     .then(celebrityFromDB => {
-//         res.render('', {'edit', {celebrities : celebrityFromDB}})
-//     })
-//     .catch(err => {
-//         next(err)
-//     })
 
-// })
 
 router.post('/celebrities/:id', (req, res, next) => {
+    const id = req.params.id
     const {name, occupation, catchPhrase} = req.body
-    Celebrity.create({
-        name : name,
-        occupation : occupation,
-        catchPhrase : catchPhrase
+    Celebrity.findByIdAndUpdate(id, {
+        name,
+        occupation,
+        catchPhrase
     })
     .then(() => {
         res.redirect('/celebrities')
