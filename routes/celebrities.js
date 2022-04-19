@@ -79,7 +79,7 @@ router.post('/celebrities/:id', (req, res, next) => {
         catchPhrase: catchPhrase
     }
 
-    Celebrity.update(req.body._id, celebrity)
+    Celebrity.findByIdAndUpdate(req.params.id, celebrity)
     .then(createdCelebrity => {
         res.redirect('/celebrities');
     })
