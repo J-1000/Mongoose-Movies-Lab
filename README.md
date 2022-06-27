@@ -62,7 +62,6 @@ And you have to install all the dependencies:
 
 
 ```sh
-$ cd starter_code
 $ npm install
 ```
 
@@ -86,10 +85,10 @@ The `Celebrity` model should have:
     - Create the `Celebrity` model with the schema.
     - Create the celebrity schema with `name`, `occupation` and `catchPhrase`.
     - Export the `Celebrity` model.
-3. Create the `seeds.js` file in the `bin/` folder.
+3. Create the `seeds.js` file.
 4. In `seeds.js` file:
     - Create an array of 3 objects, each with `name`, `occupation` and `catchPhrase` for our initial celebrities.
-    - Call the `Celebrity` model's `create` method with the array as argument.
+    - Call the `Celebrity` model's `insertMany` method with the array as argument.
     - In the `create` method's callback, display feedback.
 5. Run the seed file with `node` to seed your database.
 6. Check the database with the `mongo` command to confirm that your data was saved.
