@@ -52,7 +52,7 @@ $ git push origin master
 
 ### Iteration 0 | Initialize the project
 
-After forking and cloning the project, you will have to add a `starter_code/.env` file:
+After forking and cloning the project, you will have to add a `.env` file:
 
 ```
 PORT=3000
