@@ -1,0 +1,13 @@
+<h2>Celebrity list</h2>
+<ul>
+{{#each celebrityList}}
+
+    <li>
+    <a href="/celebrities/{{id}}">
+    {{this.name}}
+   </a>
+   </li>
+{{/each}}
+</ul>
+<a href="/celebrities/new">Add a celebrity</a>
+{{!-- we added the link here (http://127.0.0.1:3000/celebrities) --}}
