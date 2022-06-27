@@ -1,0 +1,12 @@
+{{!-- Iteration #6 (Bonus): Editing Celebrities --}}
+
+<h2>Edit {{editedCelebrities.name}}'s Information</h2>
+<form action="/celebrities/{{editedCelebrities._id}}" method="POST">
+    <label for="name">Name:</label><br>
+    <input type="text" name="name" id="name" value="{{editedCelebrities.name}}"><br>
+    <label for="occupation">Occupation:</label><br>
+    <input type="text" name="occupation" id="occupation" value="{{editedCelebrities.occupation}}"><br>
+    <label for="catchPhrase">Quote:</label><br>
+    <input type="text" name="catchPhrase" id="catchPhrase"  value="{{editedCelebrities.catchPhrase}}"><br>
+    <button type="submit">Save</button>
+</form>

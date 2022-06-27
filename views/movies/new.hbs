@@ -1,0 +1,17 @@
+{{!-- Iteration #8: Adding a new movie --}}
+
+<h2>Add a new movie</h2>
+<form action="/movies" method="POST">
+<label for="title">Title:</label> <br>
+<input type="text" name="title" id="title"> <br>
+<label for="genre">Genre:</label> <br>
+<input type="text" name="genre" id="genre"> <br>
+<label for="plot">Plot:</label> <br>
+<textarea name="plot" id="plot" cols="30" rows="10"></textarea> <br>
+<label for="cast">Cast:</label> <br>
+{{!-- shows the list of the celebrities, select multiple --}}
+{{#each celebrities}}
+    <input type="checkbox" name="cast" value="{{_id}}">{{name}}<br>
+{{/each}}
+<button type="submit">Save</button>
+</form>

@@ -1,0 +1,11 @@
+{{!-- Iteration #10: Listing all Movies --}}
+<h2>List of movies</h2>
+    {{#each movies}}
+            {{!-- display the title, genre and plot for every movie --}}
+        <a href="/movies/{{_id}}">{{title}}</a>
+        <div>
+            <a href="/movies/{{_id}}/edit"><button>Edit</button></a>
+        </div>
+    {{/each}}
+
+<a href="/movies/new">Add a new Movie</a>
