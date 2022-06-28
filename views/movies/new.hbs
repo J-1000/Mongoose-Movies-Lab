@@ -1,0 +1,19 @@
+<h2>Add a New Movie</h2>
+
+{{!-- the url of action should be same as POST --}}
+<form action="/movies" method="POST">
+    <label for="title">title: </label>
+    <input type="text" id="id-title" name="title" required>
+
+    <label for="genre">genre: </label>
+    <input type="text" id="id-genre" name="genre" required>
+
+    <label for="plot">plot: </label>
+    <input type="text" id="id-plot" name="plot" required>
+
+    <label for="cast">cast: </label>
+    <input type="text" id="id-cast" name="cast" required>
+
+
+    <button type="submit">Add the Movie</button>
+</form>
