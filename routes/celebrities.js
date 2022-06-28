@@ -78,7 +78,7 @@ router.post("/celebrities/edit/:id", (req, res, next) => {
       res.redirect(`/celebrities/${celebrityId}`);
     })
     .catch((err) => {
-      next(er);
+      next(err);
     });
 });
 
