@@ -5,6 +5,7 @@ require("dotenv/config");
 // ℹ️ Connects to the database
 require("./db");
 
+
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require("express");
@@ -25,8 +26,11 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
 // 👇 Start handling routes here
-const index = require("./routes/index");
+const index = require("./routes/celebrities");
 app.use("/", index);
+
+const celebrities = require("./routes/celebrities");
+app.use("/", celebrities);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
