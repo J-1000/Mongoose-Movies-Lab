@@ -8,7 +8,7 @@ router.get('/celebrities', (req, res, next) => {
 	// get all the celebrities from the db
 	Celebrity.find()
 		.then(celebritiesFromDB => {
-		//	console.log(celebritiesFromDB)
+			//	console.log(celebritiesFromDB)
 			//console.log(celebritiesFromDB[0].name)
 			// render a view named 'celebrities' with all the celebrities from the db 
 			res.render('celebrities/index', { celebrityList: celebritiesFromDB })
@@ -32,17 +32,16 @@ router.post('/celebrities', (req, res, next) => {
 
 router.get('/celebrities/:id', (req, res, next) => {
 	const celebrityId = req.params.id
-	
+
 	Celebrity.findById(celebrityId)
 		.then(celebrityFromDB => {
-		//	console.log(celebrityFromDB)
+			//	console.log(celebrityFromDB)
 			res.render('celebrities/show', { celebrityDetail: celebrityFromDB })
 		})
 		.catch(err => {
 			next(err)
 		})
 })
-
 router.post('/celebrities/:id/delete', (req, res, next) => {
 	const celebrityId = req.params.id
 	Celebrity.findByIdAndRemove(celebrityId)
@@ -54,7 +53,7 @@ router.get('/celebrities/:id/edit', (req, res, next) => {
 	const celebrityId = req.params.id
 	Celebrity.findById(celebrityId)
 		.then(celebrityFromDB => {
-		//	console.log(celebrityFromDB)
+			//	console.log(celebrityFromDB)
 			res.render('celebrities/edit', { celebrityDetail: celebrityFromDB })
 		})
 		.catch(err => {
@@ -84,21 +83,73 @@ router.get('/movies', (req, res, next) => {
 		})
 })
 
+router.post('/movies/:id/delete', (req, res, next) => {
+	const movieId = req.params.id
+	Movie.findByIdAndRemove(movieId)
+		.then(() => res.redirect('/movies'))
+		.catch(error => res.render('movies'))
+});
+
 
 //just show the form which could create a movie
-router.get('/movies/new', (req, res) => res.render('movies/new.hbs'));
+//router.get('/movies/new', (req, res) => res.render('movies/new.hbs'));
 
-router.post('/movies', (req, res, next) => {
-	const { title, genre, plot, cast } = req.body;
-	console.log(req.body);
 
-	Movie.create({ title:title, genre:genre, plot:plot, cast:cast })
-		.then(() => res.redirect('/movies'))
+router.get('/movies/new', (req, res, next) => {
+	Celebrity.find()
+		.then(celebritiesFromDB => {
+			//console.log(celebritiesFromDB)
+			res.render('movies/new', { celebrityList: celebritiesFromDB })
+		})
+		.catch(err => next(err))
+});
+
+//antonio
+router.get('/movies/:id', (req, res, next) => {
+	const movieId = req.params.id
+
+	Movie.findById(movieId)
+		.then(moviesFromDB => {
+			//	console.log(celebrityFromDB)
+			res.render('movies/show', { movieDetail: moviesFromDB })
+		})
 		.catch(err => {
 			next(err)
 		})
+})
+
+
+
+router.post('/movies', (req, res, next) => {
+	const { title, genre, plot, cast } = req.body;
+	//console.log(req.body);
+
+	Movie.create({
+		title,
+		genre,
+		plot,
+		cast
+	})
+		//.populate('celebrity')
+		.then(() => res.redirect('/movies'))
+		.catch(err => {
+			next(err)
+			res.render('movies/new')
+		})
 
 });
+
+router.get('/movies/:id/edit', (req, res, next) => {
+	const movieId = req.params.id
+	Celebrity.findById(movieId)
+		.then(moviesFromDB => {
+			//	console.log(celebrityFromDB)
+			res.render('movies/edit', { movieDetail: moviesFromDB })
+		})
+		.catch(err => {
+			next(err)
+		})
+})
 
 module.exports = router;
 

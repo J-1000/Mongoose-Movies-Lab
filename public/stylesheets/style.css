@@ -1,10 +1,27 @@
+.nav-bar {
+  background-color: rgb(203, 205, 207);
+  padding: 6px 0;
+  display: flex;
+  justify-content: flex-end;
+
+}
+.nav-bar a {
+    font-weight: lighter;
+  font-size: 1.2em;
+  text-decoration: none;
+  color: rgb(32, 160, 240);
+}
+
+
+
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00b7ff;
+  color: #3faeda;
 }
 
 h1 {

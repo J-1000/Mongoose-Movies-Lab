@@ -17,7 +17,7 @@ const celebrities = [
     {
 		name: "Mario Haha",
 		occupation: "Boss",
-        catchPhrase: "Money is everything."
+        catchPhrase: "I'm boss."
 	},
     {
 		name: "Dog Lee ",

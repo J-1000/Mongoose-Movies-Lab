@@ -5,28 +5,28 @@
     </nav>
 </h5>
 
-<h2>Add a New Movie</h2>
+<h2>Edit the Movie</h2>
 
 {{!-- the url of action should be same as POST --}}
-<form action="/movies" method="POST">
+
+<form action="/movies/{{movieDetail._id}}" method="POST">
     <label for="title">title: </label>
-    <input type="text" id="id-title" name="title" required>
+    <input type="text" id="id-title" name="title" value="{{movieDetail.name}}" required>
 
     <label for="genre">genre: </label>
-    <input type="text" id="id-genre" name="genre" required>
+    <input type="text" id="id-genre" name="genre" value="{{movieDetail.genre}}" required>
 
     <label for="plot">plot: </label>
-    <input type="text" id="id-plot" name="plot" required>
+    <input type="text" id="id-plot" name="plot" value="{{movieDetail.plot}}" required>
 
-
-	<label for="cast">Cast: </label>
+    <label for="cast">Cast: </label>
     <select name="cast" multiple>
         {{#each celebrityList}}
         <option value="{{_id}}" selected>{{name}}</option>
         {{/each}}
     </select>
 
-  
-
-    <button type="submit">Add the Movie</button>
+    <br />
+    <br />
+    <button type="submit">Submit the Edition</button>
 </form>

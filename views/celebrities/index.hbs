@@ -1,3 +1,10 @@
+<h5>
+    <nav class="nav-bar">
+        <a class="nav-bar-item" href="/movies"> See Movies</a> &nbsp;&nbsp;&nbsp;
+        {{!-- <a class="nav-bar-item" href="/celebrities"> See Celebrties&nbsp;&nbsp;&nbsp;</a> --}}
+    </nav>
+</h5>
+
 <h1>These are our Celebrities</h1>
 
 <h2>
@@ -7,12 +14,12 @@
     </ul>
 
     <form action="/celebrities/{{_id}}/delete" method="POST">
-        
+
         <button type="submit">Delete the Celebrity</button>
     </form>
 
     {{/each}}
-
+    <br />
     <a href="celebrities/new"> Add a Celebrity</a>
 </h2>
 
