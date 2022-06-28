@@ -1,0 +1,16 @@
+<h2>All the movies 🕺🏻 💃🏻</h2>
+
+{{#each movieList}}
+  <a href="/movies/{{_id}}">
+    <h3>{{title}}</h3>
+  </a>
+  <a href="/movies/{{_id}}/edit">
+    <button type="submit">Edit this movie</button>
+  </a>
+{{/each}}
+
+<br />
+<hr />
+<br />
+
+<a href="/movies/new">Add a new movie</a>

@@ -1,0 +1,8 @@
+{{#with movie}}
+  <h1>Title: {{title}}</h1>
+  <p>Genre: {{genre}}</p>
+  <p>Plot: {{plot}}</p>
+  {{#each cast}}
+    <p>Name: {{this.name}}</p>
+  {{/each}}
+{{/with}}
