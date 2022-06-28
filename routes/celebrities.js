@@ -58,12 +58,24 @@ router.post("/celebrities/:id/delete", (req, res, next) => {
     });
 });
 
-router.get("/celebrities/edit/:id", (req, res, next) => {
+router.get("/celebrities/:id/edit", (req, res, next) => {
+  const celebrityId = req.params.id;
+  Celebrity.findById(celebrityId)
+    .then((celebrityFromDB) => {
+      console.log(celebrityFromDB);
+      res.render("celebrities/edit", { celebrity: celebrityFromDB });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.post("/celebrities/:id", (req, res, next) => {
   const celebrityId = req.params.id;
   const { name, occupation, catchPhrase } = req.body;
   Celebrity.findByIdAndUpdate(celebrityId, { name, occupation, catchPhrase })
     .then(() => {
-      res.redirect(`/celebrities/${celebrityId}`);
+      res.redirect(`/celebritys/${celebrityId}`);
     })
     .catch((err) => {
       next(er);
