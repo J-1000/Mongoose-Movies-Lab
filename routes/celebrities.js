@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { routes } = require("../app");
-// we need to require the Book model to cammunicate with the db
 const Celebrity = require("../models/Celebrity.model");
 
 router.get("/celebrities", (req, res, next) => {
