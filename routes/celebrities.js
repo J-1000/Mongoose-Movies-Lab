@@ -35,15 +35,10 @@ router.post("/celebrities", (req, res, next) => {
     occupation: occupation,
     catchPhrase: catchPhrase,
   })
-    // .then(() => {
-    .then(() => {
-      return Celebrity.find().then((celebritiesFromDB) => {
-        // console.log(celebritiesFromDB);
-        res.render("celebrities/index", { celebrityList: celebritiesFromDB });
-      });
-      // res.redirect(`${createdCelebrity._id}`);
+    .then((createdCelebrity) => {
+      console.log(createdCelebrity);
+      res.redirect("/celebrities");
     })
-    // })
     .catch((err) => {
       next(err);
       res.render("celebrities/new");
@@ -61,7 +56,6 @@ router.post("/celebrities/:id/delete", (req, res, next) => {
       next(err);
     });
 });
-// });
 
 router.get("/celebrities/:id/edit", (req, res, next) => {
   const celebrityId = req.params.id;
