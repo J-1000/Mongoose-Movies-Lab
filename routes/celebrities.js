@@ -53,21 +53,15 @@ router.post("/celebrities", (req, res, next) => {
 router.post("/celebrities/:id/delete", (req, res, next) => {
   const celebrityId = req.params.id;
   Celebrity.findByIdAndRemove(celebrityId)
-    // .then(deletedCelebrity => {
-    //   console.log(deletedCelebrity)
-    //   res.redirect("celebrities")
-    // })
-    .then(() => {
-      return Celebrity.find()
-        .then((celebritiesFromDB) => {
-          // console.log(celebritiesFromDB);
-          res.render("celebrities/index", { celebrityList: celebritiesFromDB });
-        })
-        .catch((err) => {
-          next(err);
-        });
+    .then((deletedCelebrity) => {
+      console.log(deletedCelebrity);
+      res.redirect("/celebrities");
+    })
+    .catch((err) => {
+      next(err);
     });
 });
+// });
 
 router.get("/celebrities/:id/edit", (req, res, next) => {
   const celebrityId = req.params.id;
@@ -88,16 +82,13 @@ router.post("/celebrities/:id", (req, res, next) => {
     name,
     occupation,
     catchPhrase,
-  }).then(() => {
-    return Celebrity.find()
-      .then((celebritiesFromDB) => {
-        // console.log(celebritiesFromDB);
-        res.render("celebrities/index", { celebrityList: celebritiesFromDB });
-      })
-      .catch((err) => {
-        next(err);
-      });
-  });
+  })
+    .then(() => {
+      res.redirect("/celebrities");
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 module.exports = router;
