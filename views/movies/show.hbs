@@ -2,5 +2,7 @@
 <h3>{{movie.title}}</h3>
 <h4>{{movie.genre}}</h4>
 <p>{{movie.plot}}</p>
-<p>{{movie.cast}}</p>
+{{#each movie.cast}}
+    <p>Name: {{this.name}}</p>
+  {{/each}}
 <a href="/movies/{{movie._id}}/edit">Edit</a>

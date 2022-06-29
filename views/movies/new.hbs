@@ -8,7 +8,7 @@
 
   <label for="plot">plot: </label>
   <input type="text" id="plot" name="plot" />
-  <select>
+  <select name="cast" multiple>
     {{#each celebrities}}
       <option value="{{_id}}" selected>{{name}}</option>
     {{/each}}
