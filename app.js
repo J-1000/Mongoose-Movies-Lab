@@ -28,6 +28,15 @@ app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 const index = require("./routes/index");
 app.use("/", index);
 
+// This is the celebrities route to the celebrities.js
+const celebrities = require("./routes/celebrities");
+app.use("/", celebrities);
+
+// This is the celebrities route to the celebrities.js
+const movies = require("./routes/movies");
+app.use("/", movies);
+
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
