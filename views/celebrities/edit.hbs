@@ -2,13 +2,13 @@
 {{!-- this should be the link from route.post --}}
 <form action="/celebrities/{{celebrity.id}}/edit" method="post">
     <label for="title">Name: </label>
-    <input type="text" placeholder="{{celebrity.name}}" name="name">
+    <input type="text" value="{{celebrity.name}}" name="name">
 
     <label for="occupation">Occupation: </label>
-    <input type="text" placeholder="{{celebrity.occupation}}" name="occupation">
+    <input type="text" value="{{celebrity.occupation}}" name="occupation">
 
     <label for="catchPhrase">Catchphrase: </label>
-    <input type="text" placeholder="{{celebrity.catchPhrase}}" name="catchPhrase">
+    <input type="text" value="{{celebrity.catchPhrase}}" name="catchPhrase">
 
     <button type="submit">Edit the celebrity</button>
 </form>

@@ -9,8 +9,14 @@
     <label for="catchPhrase">Plot: </label>
     <input type="text" name="plot">
 
-    <label for="catchPhrase">Cast: </label>
-    <input type="text" name="cast">
+    <select name="cast" multiple>
+        {{#each celebrityList}}
+        <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+    </select>
+
+ {{!--    <label for="catchPhrase">Cast: </label>
+    <input type="text" name="cast"> --}}
 
     <button type="submit">Add a movie</button>
 </form>
