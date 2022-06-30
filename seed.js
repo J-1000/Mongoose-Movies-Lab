@@ -33,3 +33,5 @@ Celebrity.insertMany(celebrities)
 		mongoose.connection.close()
 	})
 	.catch(err => console.log(err))
+
+

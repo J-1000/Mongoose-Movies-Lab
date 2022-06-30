@@ -11,7 +11,7 @@
 
 <form action="/movies/{{movieDetail._id}}" method="POST">
     <label for="title">title: </label>
-    <input type="text" id="id-title" name="title" value="{{movieDetail.name}}" required>
+    <input type="text" id="id-title" name="title" value="{{movieDetail.title}}" required>
 
     <label for="genre">genre: </label>
     <input type="text" id="id-genre" name="genre" value="{{movieDetail.genre}}" required>
@@ -19,11 +19,13 @@
     <label for="plot">plot: </label>
     <input type="text" id="id-plot" name="plot" value="{{movieDetail.plot}}" required>
 
+    <br />
     <label for="cast">Cast: </label>
     <select name="cast" multiple>
-        {{#each celebrityList}}
-        <option value="{{_id}}" selected>{{name}}</option>
-        {{/each}}
+
+        {{{str}}}
+     
+
     </select>
 
     <br />

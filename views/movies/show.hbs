@@ -14,11 +14,14 @@
     <br />
     <p>Plot: {{plot}}</p>
     <br />
+    {{!-- <p>Cast: {{cast.1}}</p> --}}
+
     <p> Cast: </p>
     {{#each cast}}
     <p>{{name}}</p>
     <br />
     {{/each}}
+
     <a href="/movies/{{_id}}/edit">Edit the Movie</a>
     {{/with}}
 </h2>
