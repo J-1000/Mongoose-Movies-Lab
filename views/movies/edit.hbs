@@ -1,0 +1,34 @@
+<h5>
+    <nav class="nav-bar">
+        <a class="nav-bar-item" href="/movies"> See Movies</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="nav-bar-item" href="/celebrities"> See Celebrties&nbsp;&nbsp;&nbsp;</a>
+    </nav>
+</h5>
+
+<h2>Edit the Movie</h2>
+
+{{!-- the url of action should be same as POST --}}
+
+<form action="/movies/{{movieDetail._id}}" method="POST">
+    <label for="title">title: </label>
+    <input type="text" id="id-title" name="title" value="{{movieDetail.title}}" required>
+
+    <label for="genre">genre: </label>
+    <input type="text" id="id-genre" name="genre" value="{{movieDetail.genre}}" required>
+
+    <label for="plot">plot: </label>
+    <input type="text" id="id-plot" name="plot" value="{{movieDetail.plot}}" required>
+
+    <br />
+    <label for="cast">Cast: </label>
+    <select name="cast" multiple>
+
+        {{{str}}}
+     
+
+    </select>
+
+    <br />
+    <br />
+    <button type="submit">Submit the Edition</button>
+</form>
