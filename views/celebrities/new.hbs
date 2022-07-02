@@ -1,0 +1,14 @@
+{{!-- http://127.0.0.1:3000/celebrities/new => we are here!!! --}}
+<h2>Add a celebrity you like</h2>
+<form action="/celebrities" method="POST">
+    <label for="title">Name: </label>
+    <input type="text" placeholder="name" name="name">
+
+    <label for="occupation">Occupation: </label>
+    <input type="text" placeholder="occupation" name="occupation">
+
+    <label for="catchPhrase">Catchphrase: </label>
+    <input type="text" placeholder="catchPhrase" name="catchPhrase">
+
+    <button type="submit">Add a celebrity</button>
+</form>

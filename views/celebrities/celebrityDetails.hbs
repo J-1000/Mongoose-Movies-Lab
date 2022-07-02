@@ -1,0 +1,11 @@
+{{!-- http://127.0.0.1:3000/celebrities/:id --}}
+{{#with celebrity}}
+    <h2>Celebrity Information</h2>
+    <ul>
+    <li>{{name}}</li>
+    <li>{{occupation}}</li>
+    <li>{{catchPhrase}}</li>
+    </ul>
+    <a href="/celebrities/{{id}}/edit">Edit the celebrity</a>
+
+{{/with}}
