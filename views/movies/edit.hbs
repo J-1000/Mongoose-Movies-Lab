@@ -10,11 +10,12 @@
     <label for="plot">Plot: </label>
     <input type="text" value="{{movie.plot}}" name="plot">
 
-    <select name="cast">
-        {{#each celebrityList}}
-        <option value="{{_id}}">{{name}}</option>
-        {{/each}}
-    </select>
+
+    {{#each celebrity}}
+    <input type="checkbox" id={{name}} name="cast" value={{_id}}>
+    <label for={{name}}>{{name}}</label>
+    {{/each}}
+   
 
     <button type="submit">Edit the movie</button>
 </form>

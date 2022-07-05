@@ -64,7 +64,11 @@ router.get('/movies/:id/edit',(req, res, next) => {
 	Movie.findById(movieId)
 	.then(movieFromDB => {
 		//console.log(celebrityFromDB)
-		res.render('movies/edit', {movie: movieFromDB})
+		Celebrity.find()
+		.then(celebritiesFromDB => {
+			res.render('movies/edit', {movie: movieFromDB, celebrity: celebritiesFromDB})
+		})
+		//	
 	})
 	.catch(err => {
 		next(err);
@@ -75,7 +79,7 @@ router.post('/movies/:id/edit', (req, res, next) => {
 	const movieId = req.params.id;
     console.log('try: ', req.body)
 	const { title, genre, plot, cast } = req.body;
-	Movie.findByIdAndUpdate(movieId, {title, genre, plot, cast})
+	Movie.findByIdAndUpdate(movieId, { title, genre, plot, cast } )
 	.then(()=> {
 		res.redirect('/movies');
 	})
@@ -85,3 +89,4 @@ router.post('/movies/:id/edit', (req, res, next) => {
 })
 
 module.exports = router;
+
