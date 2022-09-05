@@ -1,0 +1,22 @@
+<h1>Add a Song! (; </h1>
+<form action="/song" method="POST">
+	<label for="">Tittle: </label>	
+	<input type="text" name="tittle" >
+
+	<label for="">Genre: </label>	
+	<input type="text" name="genre" >
+	
+	<label for="">Part of the lyric: </label>	
+	<input type="text" name="lyric" >
+
+    <label for="">Celebrity: </label>	
+	{{!-- <input type="text" name="author"> --}}
+	{{!-- this renders the list of the authors as a select --}}
+	<select name="name" id="">
+		{{#each famoso}}
+			<option value="{{_id}}">{{name}} </option>
+		{{/each}}
+	</select>
+
+	<button type="submit">Add this song</button>
+</form>

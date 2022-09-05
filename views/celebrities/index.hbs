@@ -1,13 +1,24 @@
-<h2 class="titulo"> This are a bit unkonwns celebrities</h2>
+<h2 class="titulo"> List of unkonwns celebrities</h2>
 
  {{#each celebrities}}
 	
 		<h3>{{this.name}}</h3>
 		<a href="/celebrities/{{_id}}">See more 📝</a>
-		<a href="/celebrities/delete/{{_id}}">Erase this "Famoso" from the list ❌</a>
+		<a href="/celebrities/delete/{{_id}}">Erase this "Famous" from the list ❌</a>
 {{/each}}
-<div>""</div>
 <div>
-<a href="/celebrities/add">Add a "Famoso" 📕</a>
+<a href="/celebrities/add">Add a "Celebrity" 📕</a></div>
+
+<h2> List of Songs</h2>
+{{#each song}}
+
+		<h3>Tittle : {{this.tittle}}</h3>
+		<h3>Tittle : {{this.lyric}}</h3>
+
+<a href="/song/delete/{{_id}}">Erase this "Famous" from the list ❌</a>
+{{/each}}
+<div>
+
+<a href="/song/add2">Add a "Song 📕</a>
 
 </div>

@@ -1,0 +1,14 @@
+<h1>Edit this famoous one ✏️</h1>
+
+<form action="/celebrities/edit/{{famoso._id}}" method="POST">
+	<label for="">Name: </label>	
+	<input type="text" name="name" value="{{famoso.name}}">
+
+	<label for="">Ocupation: </label>	
+	<input type="text" name="author" value="{{famoso.occupation}}">
+	
+	<label for="">Tipical Phrase: </label>	
+	<input type="text" name="catchPhrase" value="{{famoso.catchPhrase}}">
+
+	<button type="submit">Save</button>
+</form>

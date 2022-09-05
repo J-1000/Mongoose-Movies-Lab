@@ -1,6 +1,8 @@
  {{#with famoso}}
 	
-		<h3>{{this.name}}</h3>
-		<h3>{{this.occupation}}</h3>
-        <h3>{{this.catchPhrase}}</h3>
+		<h3>Name: {{this.name}}</h3>
+		<h3>Ocupation : {{this.occupation}}</h3>
+        <h3>Tipical Phrase:  {{this.catchPhrase}}</h3>
+
+		<a href="/celebrities/edit/{{_id}}">Edit this Famous 📝</a>
 {{/with}}

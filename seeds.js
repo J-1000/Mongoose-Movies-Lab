@@ -1,4 +1,4 @@
-const Celebrity = require('../models/Celebrity')
+const Celebrity = require('./models/Celebrity')
 
 const mongoose = require('mongoose')
  mongoose.connect('mongodb://localhost:27017')
