@@ -1,0 +1,10 @@
+<h1>All the Celebrities 👨‍🎤👩‍🎤</h1>
+{{#each celebrities}}
+	<div>
+		<a href="/celebrities/{{_id}}">{{name}}</a>
+	</div>
+    <form action="/celebrities/{{_id}}/delete" method="POST">
+		<button type="sumbmit">❌</button>
+    </form>
+{{/each}}
+<a href="/celebrities/new">Add a celebrity here ➕</a>

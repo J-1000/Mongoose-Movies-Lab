@@ -1,0 +1,7 @@
+<h2>All the info for {{celebrity.name}}</h2>
+{{#with celebrity}}
+<h2>Occupation: {{occupation}}</h2>
+<h2>CatchPhrase: {{catchPhrase}}</h2>
+<a href="/celebrities/{{_id}}/edit">Edit 📝</a>
+<a href="/celebrities/{{_id}}/delete">Delete this Celebrity ❌</a>
+{{/with}}
