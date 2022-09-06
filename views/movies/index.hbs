@@ -1,0 +1,21 @@
+<h1>🎞🎥All the Movies 🎬📽</h1>
+<div  style='display: flex;'>
+	{{#each movies}}
+		<div>
+			<h2><a href='/movies/{{_id}}'>{{title}}</a></h2>
+			<p>Genre: {{genre}}</p>
+			<p>Plot: {{plot}}</p>
+			<p>Cast: </p>
+			<ul>
+				{{#each cast}}
+					<li>{{name}}</li>
+				{{/each}}
+			</ul>
+			<form action='/movies/{{_id}}/delete' method='POST'>
+				<button type='sumbmit'>❌</button>
+			</form>
+		</div>
+	{{/each}}
+</div>
+
+<a href='/movies/new'>Add a Movie here ➕</a>
