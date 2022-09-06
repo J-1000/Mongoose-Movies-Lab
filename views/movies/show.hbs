@@ -1,0 +1,13 @@
+<h2>Movie Details</h2>
+<h3>Title: {{movie.title}}</h3>
+<p>Genre: {{movie.genre}}</p>
+<p>Plot: {{movie.plot}}</p>
+{{#if movie.cast}}
+<p>Cast: </p>
+       <ul>
+            {{#each movie.cast}}
+                <li>{{name}}</li>
+            {{/each}}
+       </ul> 
+{{/if}} 
+<a href="/movies/{{movie._id}}/edit">Edit</a>
