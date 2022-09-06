@@ -1,0 +1,25 @@
+<h2>All the info for {{movie.title}}</h2>
+{{#with movie}}
+	<h2>Genre: {{genre}}</h2>
+	<h2>Plot: {{plot}}</h2>
+	<h2>Cast: </h2>
+	<ul>
+		{{#each cast}}
+			<li>{{name}}</li>
+		{{/each}}
+	</ul>
+	{{!-- <a href='/movies/{{_id}}/edit'>Edit Movie 📝</a> --}}
+	
+
+	<form action='/movies/' method='GET'>
+		<button type='sumbmit'>Go Back to Movies 🔙</button>
+	</form>
+
+	<form action='/movies/{{_id}}/edit' method='GET'>
+		<button type='sumbmit'>Edit Movie 📝</button>
+	</form>
+
+	<form action='/movies/{{_id}}/delete' method='POST'>
+		<button type='sumbmit'>Delete Movie ❌</button>
+	</form>
+{{/with}}

@@ -1,0 +1,17 @@
+<h2>All the info for {{celebrity.name}}</h2>
+{{#with celebrity}}
+	<h2>Occupation: {{occupation}}</h2>
+	<h2>CatchPhrase: {{catchPhrase}}</h2>
+
+	<form action='/celebrities/' method='GET'>
+		<button type='sumbmit'>Go Back to Celebrities 🔙</button>
+	</form>
+
+	<form action='/celebrities/{{_id}}/edit' method='GET'>
+		<button type='sumbmit'>Edit Celebrity 📝</button>
+	</form>
+
+	<form action='/celebrities/{{_id}}/delete' method='POST'>
+		<button type='sumbmit'>Delete this Celebrity ❌</button>
+	</form>
+{{/with}}
