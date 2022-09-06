@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 
-const mongoURI = process.env.MONGODB_URI || `mongodb://localhost:27017/movies-and-celebrities`
+const MONGO_URI= process.env.MONGODB_URI || `mongodb://localhost:27017/movies-and-celebrities`
+// `mongodb://localhost:27017/movies-and-celebrities` 'mongodb+srv://jpta24:Tito14351758@db1.0fzwoyt.mongodb.net/movies-and-celebrities?retryWrites=true&w=majority' 
+
 
 mongoose
-  .connect(mongoURI)
+  .connect(MONGO_URI)
   .then((x) => {
     console.log(
       `Connected to add the Seed Data!"`

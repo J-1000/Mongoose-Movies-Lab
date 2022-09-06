@@ -7,10 +7,11 @@ const mongoose = require("mongoose");
 
 // const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/boilerplate";
 
-const mongoURI = process.env.MONGODB_URI || `mongodb://localhost:27017/${process.env.DB}`
+// const mongoURI = process.env.MONGODB_URI || `mongodb://localhost:27017/${process.env.DB}`
+const MONGO_URI= process.env.MONGODB_URI || `mongodb://localhost:27017/${process.env.DB}`
 
 mongoose
-  .connect(mongoURI)
+  .connect(MONGO_URI)
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
