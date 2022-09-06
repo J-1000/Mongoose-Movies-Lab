@@ -1,0 +1,19 @@
+<h2>See all the movies here!</h2>
+
+{{#each moviesArr}}
+    <div>
+        <h3>{{this.title}}</h3>
+        <p>{{this.genre}}</p>
+        <p>{{this.plot}}</p>
+        <ul>
+            {{#each this.cast}}
+            <li>{{this.name}}</li>
+            {{/each}}
+        </ul>
+        <a href="/movies/{{id}}/edit">Edit this movie!</a>
+    </div>
+{{/each}}
+
+<div>
+    <a href="/"><h2>Go to index</h2></a>
+</div>
