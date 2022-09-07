@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const MONGO_URI= process.env.MONGODB_URI || `mongodb://localhost:27017/movies-and-celebrities`
-// `mongodb://localhost:27017/movies-and-celebrities` 'mongodb+srv://jpta24:Tito14351758@db1.0fzwoyt.mongodb.net/movies-and-celebrities?retryWrites=true&w=majority' 
+
 
 
 mongoose
