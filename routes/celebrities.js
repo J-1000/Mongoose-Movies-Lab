@@ -1,92 +1,94 @@
-const router = require('express').Router();
-const Celebrity = require('../models/Celebrity');
+const router = require("express").Router()
+const Celebrity = require("../models/Celebrity")
 
-router.get('/celebrities', (req, res, next) => {
-    // get all celebrities
-    Celebrity.find()
-    .then(celebrities => {
-        res.render('celebrities/index', {celebrities: celebrities})
-    })
-    .catch(err => {
-        next(err)
-    })
+// Create celebrity
+router.get("/celebrities/create", (req, res) => {
+    res.render("celebrities/new-celebrity")
 })
 
-router.get('/celebrities/new', (req, res, next) => {
-
-    res.render('celebrities/new');
-
-})
-
-router.post('/celebrities', (req, res, next) => {
-
+router.post("/celebrities/create", (req, res) => {
     const { name, occupation, catchPhrase } = req.body
 
     Celebrity.create({
-        name: name,
-        occupation: occupation,
-        catchPhrase: catchPhrase
+        name,
+        occupation,
+        catchPhrase
     })
     .then(createdCelebrity => {
-        res.redirect('celebrities');
+        res.redirect("/celebrities")
     })
     .catch(err => {
-        res.render('celebrities/new');
+        res.render("celebrities/new-celebrity")
     })
-
 })
 
-router.get('/celebrities/:id', (req, res, next) => {
-    const id = req.params.id;
+// Get celebrities
+router.get("/celebrities", (req, res) => {
+    Celebrity.find()
+    .then(celebrities => {
+        res.render("celebrities/celebrities", { celebrities })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
+// Get celebrity details
+router.get("/celebrities/:id", (req, res) => {
+    const id = req.params.id
+
     Celebrity.findById(id)
     .then(celebrity => {
-        res.render('celebrities/show', {celebrity: celebrity})
+        res.render("celebrities/celebrity-details", { celebrity })
     })
     .catch(err => {
-        next(err)
+        console.log(err)
     })
 })
 
-router.post('/celebrities/:id/delete', (req, res, next) => {
-    const id = req.params.id;
+// Delete celebrity
+router.post("/celebrities/:id/delete", (req, res) => {
+    const id = req.params.id
+
     Celebrity.findByIdAndRemove(id)
-    .then(query => {
-        res.redirect('/celebrities')
+    .then(deletedCelebrity => {
+        res.redirect("/celebrities")
     })
-    
     .catch(err => {
-        next(err)
+        console.log(err)
     })
 })
 
-router.get('/celebrities/:id/edit', (req, res, next) => {
-    const id = req.params.id;
+// Edit celebrity
+router.get("/celebrities/:id/edit", (req, res) => {
+    const id = req.params.id
+
     Celebrity.findById(id)
     .then(celebrity => {
-        res.render('celebrities/edit', {celebrity: celebrity})
+        res.render("celebrities/edit-celebrity", { celebrity })
     })
     .catch(err => {
-        next(err)
+        console.log(err)
     })
 })
 
-router.post('/celebrities/:id', (req, res, next) => {
+router.post("/celebrities/:id/edit", (req, res) => {
+    const id = req.params.id
     const { name, occupation, catchPhrase } = req.body
 
     const celebrity = {
-        name: name,
-        occupation: occupation,
-        catchPhrase: catchPhrase
+        name,
+        occupation,
+        catchPhrase
     }
 
-    Celebrity.findByIdAndUpdate(req.params.id, celebrity)
+    Celebrity.findByIdAndUpdate(id, celebrity)
     .then(createdCelebrity => {
-        res.redirect('/celebrities');
+        res.redirect(`/celebrities/${id}`)
     })
     .catch(err => {
-        res.render('celebrities/new');
+        console.log(err)
     })
-
 })
 
-module.exports = router;
+module.exports = router

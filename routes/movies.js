@@ -1,89 +1,119 @@
-const router = require('express').Router();
-const Movie = require('../models/Movie');
-const Celebrity = require('../models/Celebrity');
+const router = require("express").Router()
+const Movie = require("../models/Movie")
+const Celebrity = require("../models/Celebrity")
 
-router.get('/movies/new', (req, res, next) => {
-    const celebrities = Celebrity.find()
+// Create movie
+router.get("/movies/create", (req, res) => {
+    Celebrity.find()
     .then(celebrities => {
-        res.render('movies/new', {celebrities: celebrities});
+        res.render("movies/new-movie", { celebrities })
+    })
+    .catch(err => {
+        console.log(err)
     })
 })
 
-router.get('/movies', (req, res, next) => {
-    const movies = Movie.find()
-    .populate('cast')
-    .then(movies => {
-        res.render('movies/show', {movies: movies});
-    })
-})
-
-router.post('/movies', (req, res, next) => {
+router.post("/movies/create", (req, res) => {
     const { title, genre, plot, cast } = req.body
 
     Movie.create({
-        title: title,
-        genre: genre,
-        plot: plot,
-        cast: cast
+        title,
+        genre,
+        plot,
+        cast
     })
     .then(createdMovie => {
-        res.redirect('movies');
+        res.redirect("/movies")
     })
     .catch(err => {
-        res.render('movies/new');
+        res.render("movies/new-movie")
     })
 })
 
-router.get('/movies/:id/edit', (req, res, next) => {
-    const id = req.params.id;
+// Get movies
+router.get("/movies", (req, res) => {
+    Movie.find()
+    .then(movies => {
+        res.render("movies/movies", { movies })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
+// Get movie details
+router.get("/movies/:id", (req, res) => {
+    const id = req.params.id
+
     Movie.findById(id)
-    .populate('cast')
+    .populate("cast")
     .then(movie => {
-        Celebrity.find()
-        .then(celebrities => {
-            res.render('movies/edit', {movieAndCast: createMovieAndCast(movie, celebrities)})
-        })
+        res.render("movies/movie-details", { movie })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
+// Delete movie
+router.post("/movies/:id/delete", (req, res, next) => {
+    const id = req.params.id
+
+    Movie.findByIdAndRemove(id)
+    .then(deletedMovie => {
+        res.redirect("/movies")
     })
     .catch(err => {
         next(err)
     })
 })
 
-router.post('/movies/:id', (req, res, next) => {
+// Edit movie
+router.get("/movies/:id/edit", async (req, res, next) => {
+    const id = req.params.id
+
+    try {
+        const movie = await Movie.findById(id).populate("cast")
+        const celebrities = await Celebrity.find()
+        const celebritiesNotInCast = filterCelebritiesNotInCast(movie, celebrities)
+
+        res.render("movies/edit-movie", { movie, celebritiesNotInCast })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.post("/movies/:id/edit", (req, res, next) => {
+    const id = req.params.id
     const { title, genre, plot, cast } = req.body
 
     const movie = {
-        title: title,
-        genre: genre,
-        plot: plot,
-        cast: cast
+        title,
+        genre,
+        plot,
+        cast
     }
 
-    Movie.findByIdAndUpdate(req.params.id, movie)
+    Movie.findByIdAndUpdate(id, movie)
     .then(createdMovie => {
-        res.redirect('/movies');
+        res.redirect(`/movies/${id}`)
     })
     .catch(err => {
-        res.render('movies/new');
+        next(err)
     })
 })
 
-function createMovieAndCast(movie, celebrities) {
-    const cast = celebrities.filter(function (celebrity) {
-        let isInMoviesCast = false;
-        movie.cast.forEach(function(movieCelebrity) {
+
+
+function filterCelebritiesNotInCast(movie, celebrities) {
+    return celebrities.filter(celebrity => {
+        movie.cast.forEach(movieCelebrity => {
             if (movieCelebrity.name === celebrity.name) {
-                isInMoviesCast = true;
+                return false
             }
         })
-
-        return !isInMoviesCast;
+        return true
     })
-    
-    return {
-        movie: movie,
-        cast: cast
-    };
 }
 
-module.exports = router;
+module.exports = router
